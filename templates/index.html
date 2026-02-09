@@ -1,0 +1,1497 @@
+<!DOCTYPE html>
+<html lang="fr" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Auriole Dion – Portfolio Créatif & Développeur Full-Stack</title>
+
+  <!-- Tailwind -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+
+  <!-- Configuration Tailwind : palette claire -->
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            // Neutres clairs
+            'off-white': '#fdfdfd',
+            'soft-gray': '#f5f7fa',
+            'medium-gray': '#a0aec0',
+            'dark-gray': '#2d3748',
+
+            // Couleurs vives & modernes
+            'electric-violet': '#7c3aed',
+            'sky-cyan': '#06b6d4',
+            'sunset-orange': '#f59e0b',
+            'mint-green': '#10b981',
+            'coral-pink': '#f43f5e',
+
+            // Dégradés
+            'gradient-start': '#7c3aed',
+            'gradient-end': '#06b6d4',
+          },
+          animation: {
+            float: 'float 6s ease-in-out infinite',
+            glow: 'glow 2s ease-in-out infinite alternate',
+            slideUp: 'slideUp 0.5s ease-out',
+            fadeIn: 'fadeIn 0.8s ease-out',
+          },
+          keyframes: {
+            float: {
+              '0%, 100%': { transform: 'translateY(0px)' },
+              '50%': { transform: 'translateY(-20px)' },
+            },
+            glow: {
+              '0%': { boxShadow: '0 0 20px rgba(124, 58, 237, 0.4)' },
+              '100%': { boxShadow: '0 0 40px rgba(6, 182, 212, 0.6)' },
+            },
+            slideUp: {
+              '0%': { transform: 'translateY(100px)', opacity: '0' },
+              '100%': { transform: 'translateY(0)', opacity: '1' },
+            },
+            fadeIn: {
+              '0%': { opacity: '0' },
+              '100%': { opacity: '1' },
+            },
+          },
+        },
+      },
+    };
+  </script>
+
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Orbitron:wght@400;500;600;700;900&display=swap');
+
+    :root {
+      --bg: #fdfdfd;
+      --text: #2d3748;
+      --muted: #a0aec0;
+      --primary: #26C6AA;
+      --primary-200: #B9F0E4;
+      --primary-700: #1FA891;
+      --glass-bg: rgba(255, 255, 255, 0.6);
+      --glass-border: rgba(0, 0, 0, 0.08);
+    }
+
+    body {
+      font-family: 'Space Grotesk', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+    }
+
+    .font-cyber {
+      font-family: 'Orbitron', sans-serif;
+    }
+
+    /* Glass clair */
+    .glass {
+      background: var(--glass-bg);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid var(--glass-border);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.05);
+    }
+
+    /* Gradient animé */
+    .animated-gradient {
+      background: linear-gradient(-45deg, var(--primary-200), var(--primary), var(--primary-700));
+      background-size: 400% 400%;
+      animation: gradient 12s ease infinite;
+    }
+
+    @keyframes gradient {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    /* Particules */
+    .particle {
+      position: absolute;
+      width: 4px;
+      height: 4px;
+      background: rgba(38, 198, 170, 0.3);
+      border-radius: 50%;
+      animation: float 10s infinite;
+      pointer-events: none;
+    }
+  </style>
+</head>
+
+<body class="text-dark-gray overflow-x-hidden">
+
+  <!-- Particules -->
+  <div class="fixed inset-0 pointer-events-none overflow-hidden">
+    <div class="particle" style="top: 10%; left: 20%; animation-delay: 0s;"></div>
+    <div class="particle" style="top: 30%; left: 70%; animation-delay: 2s;"></div>
+    <div class="particle" style="top: 60%; left: 40%; animation-delay: 4s;"></div>
+    <div class="particle" style="top: 80%; left: 10%; animation-delay: 1s;"></div>
+    <div class="particle" style="top: 50%; left: 90%; animation-delay: 3s;"></div>
+  </div>
+
+  <!-- Navbar -->
+  <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300">
+    <div class="max-w-7xl mx-auto px-6 lg:px-8">
+      <div class="glass rounded-full mt-6 px-8 py-4">
+        <div class="flex items-center justify-between">
+          <div class="text-2xl font-cyber font-bold text-electric-violet">
+            <span class="inline-block">
+              <span class="text-3xl font-bold text-blue-600">&lt;/&gt;</span>
+              Auriole Dev
+            </span>
+          </div>
+          <div class="hidden md:flex items-center space-x-8">
+            <a href="#home" class="text-sm font-medium hover:text-electric-violet transition-colors">Accueil</a>
+            <a href="#about" class="text-sm font-medium hover:text-electric-violet transition-colors">À propos</a>
+            <a href="#skills" class="text-sm font-medium hover:text-electric-violet transition-colors">Compétences</a>
+            <a href="#projects" class="text-sm font-medium hover:text-electric-violet transition-colors">Projets</a>
+            <a href="#gallery" class="text-sm font-medium hover:text-electric-violet transition-colors">Galerie</a>
+            <a href="#musique" class="text-sm font-medium hover:text-electric-violet transition-colors">Musique</a>
+            <a href="#contact" class="px-6 py-2.5 bg-electric-violet text-white rounded-full font-semibold text-sm hover:bg-opacity-90 transition">Contact</a>
+          </div>
+          <button id="burger" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="mobile-menu" title="Ouvrir le menu" class="md:hidden flex flex-col space-y-1 w-8 h-8 justify-center items-center">
+            <span class="w-full h-0.5 bg-dark-gray block"></span>
+            <span class="w-full h-0.5 bg-dark-gray block"></span>
+            <span class="w-full h-0.5 bg-dark-gray block"></span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Mobile menu (hidden by default) -->
+  <div id="mobile-menu" role="navigation" aria-label="Menu mobile" class="fixed inset-0 z-40 bg-white/95 transform translate-x-full transition-transform duration-300 md:hidden">
+    <div class="flex flex-col items-center justify-center h-full space-y-8 px-6">
+      <button id="mobile-close" aria-label="Fermer le menu" title="Fermer le menu" class="absolute top-6 right-6 p-3 rounded-full glass">
+        <span aria-hidden="true">✕</span>
+      </button>
+      <a href="#home" class="text-2xl font-bold" role="menuitem">Accueil</a>
+      <a href="#about" class="text-2xl font-bold" role="menuitem">À propos</a>
+      <a href="#skills" class="text-2xl font-bold" role="menuitem">Compétences</a>
+      <a href="#projects" class="text-2xl font-bold" role="menuitem">Projets</a>
+      <a href="#gallery" class="text-2xl font-bold" role="menuitem">Galerie</a>
+      <a href="#musique" class="text-2xl font-bold" role="menuitem">Musique</a>
+      <a href="#contact" class="px-8 py-3 bg-electric-violet text-white rounded-full font-semibold" role="menuitem">Contact</a>
+    </div>
+  </div>
+
+  <!-- Hero -->
+  <section id="home" class="relative min-h-screen flex items-center pt-20 pb-19 overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-to-br from-electric-violet/10 via-transparent to-sky-cyan/10"></div>
+
+    <div class="max-w-7xl mx-auto px-6 lg:px-12 relative z-10 w-full">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <div class="space-y-8">
+          <div class="inline-flex items-center space-x-4  glass px-6 py-3 rounded-full">
+            <span class="relative flex h-3 w-3">
+              <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-mint-green opacity-75"></span>
+              <span class="relative inline-flex rounded-full h-3 w-3 bg-mint-green"></span>
+            </span>
+            <span class="text-sm font-medium tracking-wide ">DISPONIBLE POUR DE NOUVEAUX PROJETS</span>
+          </div>
+
+          <h1 class="text-6xl md:text-5xl lg:text-7xl font-cyber font-black leading-tight mt-6">
+            <span class="block text-gradient bg-gradient-to-r from-electric-violet to-sky-cyan bg-clip-text text-transparent">DION KELLY JOVIEN AURIOLE</span>
+            <cite class="block text-3xl md:text-2xl font-light text-dark-gray/80 mt-2">‘‘Coder avec passion, concevoir avec précision’’</cite>
+          </h1>
+
+          <p class="text-lg md:text-xl text-dark-gray/80 leading-relaxed max-w-xl">
+            Transforme tes idées en <span class="text-electric-violet font-semibold">expériences digitales immersives</span>. Développeur Full-Stack • Designer • Beat Maker.
+          </p>
+
+          <div class="flex flex-wrap gap-5">
+            <a href="#projects" class="group px-10 py-5 bg-electric-violet text-white rounded-full font-bold text-base uppercase tracking-wider shadow-2xl hover:scale-105 transition-transform flex items-center space-x-3">
+              <span>Explorer</span>
+              <i class="fas fa-arrow-right group-hover:translate-x-2 transition-transform"></i>
+            </a>
+            <a href="#contact" class="px-10 py-5 glass rounded-full font-bold text-base uppercase tracking-wider hover:bg-white/10 transition-all border-2 border-sky-cyan/50 hover:border-sky-cyan">
+              Contact
+            </a>
+          </div>
+        </div>
+
+        <div class="relative flex justify-center lg:justify-end">
+          <div class="portrait-container relative w-full max-w-2xl">
+            <img src="auriole.png" alt="Portrait" class="w-full h-auto rounded-2xl object-contain" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- À propos -->
+  <section id="about" class="py-32">
+    <div class="max-w-6xl mx-auto px-6 lg:px-6">
+      <div class="grid lg:grid-cols-2 gap-16 items-center">
+        <div class="relative group">
+          <div class="absolute -inset-1 bg-gradient-to-r from-electric-violet to-sky-cyan rounded-3xl blur-2xl opacity-50 group-hover:opacity-75 transition-opacity"></div>
+          <div class="relative aspect-square glass rounded-3xl overflow-hidden">
+            <video src="auriole.mp4" class="w-full h-full object-cover" autoplay muted loop></video>
+          </div>
+        </div>
+
+        <div class="space-y-6">
+          <span class="px-4 py-2 bg-mint-green/10 text-mint-green rounded-full text-sm font-bold border border-mint-green/30">À PROPOS</span>
+          <h2 class="text-5xl lg:text-6xl font-cyber font-bold leading-tight">
+            Créateur d'<span class="text-gradient bg-gradient-to-r from-electric-violet to-sky-cyan bg-clip-text text-transparent">expériences</span> digitales
+          </h2>
+          <p class="text-lg text-dark-gray/80 leading-relaxed">
+            Passionné par l'intersection entre <span class="text-coral-pink font-semibold">technologie</span> et <span class="text-mint-green font-semibold">créativité</span>, je conçois des solutions web qui allient performance technique et esthétique moderne.
+          </p>
+          <a href="CV professionnel.pdf" download class="inline-flex items-center gap-3 px-8 py-4 glass rounded-full hover:bg-white/10 border-2 border-coral-pink/50 hover:border-coral-pink transition-all">
+            <i class="fas fa-download"></i>
+            <span class="font-semibold">Télécharger mon CV</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Compétences -->
+  <section id="skills" class="py-32 bg-soft-gray/50">
+    <div class="max-w-7xl mx-auto px-6 lg:px-8">
+      <div class="text-center mb-20">
+        <span class="px-4 py-2 bg-sky-cyan/10 text-sky-cyan rounded-full text-sm font-bold border border-sky-cyan/30">TECHNOLOGIES</span>
+        <h2 class="text-5xl lg:text-6xl font-cyber font-bold mt-4">Arsenal <span class="text-gradient bg-gradient-to-r from-electric-violet to-sky-cyan bg-clip-text text-transparent">Technique</span></h2>
+        <p class="text-xl text-dark-gray/70 max-w-2xl mx-auto mt-4">Des technologies de pointe pour créer des solutions modernes et performantes</p>
+      </div>
+
+      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
+        <!-- HTML5 -->
+        <div class="card-3d group glass rounded-2xl p-8 hover:border-electric-violet/50 border-2 border-transparent transition-all">
+          <div class="text-center space-y-4">
+            <i class="fab fa-html5 text-5xl text-coral-pink"></i>
+            <div class="font-bold text-lg">HTML5</div>
+            <div class="h-2 bg-gray-200 rounded-full overflow-hidden">
+              <div class="h-full bg-coral-pink rounded-full" style="width: 95%"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- CSS3 -->
+        <div class="card-3d group glass rounded-2xl p-8 hover:border-sky-cyan/50 border-2 border-transparent transition-all">
+          <div class="text-center space-y-4">
+            <i class="fab fa-css3-alt text-5xl text-sky-cyan"></i>
+            <div class="font-bold text-lg">CSS3</div>
+            <div class="h-2 bg-gray-200 rounded-full overflow-hidden">
+              <div class="h-full bg-sky-cyan rounded-full" style="width: 93%"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- JavaScript -->
+        <div class="card-3d group glass rounded-2xl p-8 hover:border-sunset-orange/50 border-2 border-transparent transition-all">
+          <div class="text-center space-y-4">
+            <i class="fab fa-js text-5xl text-sunset-orange"></i>
+            <div class="font-bold text-lg">JavaScript</div>
+            <div class="h-2 bg-gray-200 rounded-full overflow-hidden">
+              <div class="h-full bg-sunset-orange rounded-full" style="width: 90%"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- PHP -->
+        <div class="card-3d group glass rounded-2xl p-8 hover:border-electric-violet/50 border-2 border-transparent transition-all">
+          <div class="text-center space-y-4">
+            <i class="fab fa-php text-5xl text-electric-violet"></i>
+            <div class="font-bold text-lg">PHP</div>
+            <div class="h-2 bg-gray-200 rounded-full overflow-hidden">
+              <div class="h-full bg-electric-violet rounded-full" style="width: 88%"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- MySQL -->
+        <div class="card-3d group glass rounded-2xl p-8 hover:border-mint-green/50 border-2 border-transparent transition-all">
+          <div class="text-center space-y-4">
+            <i class="fas fa-database text-5xl text-mint-green"></i>
+            <div class="font-bold text-lg">MySQL</div>
+            <div class="h-2 bg-gray-200 rounded-full overflow-hidden">
+              <div class="h-full bg-mint-green rounded-full" style="width: 87%"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Projets -->
+  <section id="projects" class="py-32">
+    <div class="max-w-7xl mx-auto px-6 lg:px-8">
+      <div class="text-center mb-20">
+        <span class="px-4 py-2 bg-coral-pink/10 text-coral-pink rounded-full text-sm font-bold border border-coral-pink/30">PORTFOLIO</span>
+        <h2 class="text-5xl lg:text-6xl font-cyber font-bold mb-6">Projets <span class="text-gradient bg-gradient-to-r from-electric-violet to-sky-cyan bg-clip-text text-transparent">Phares</span></h2>
+        <p class="text-xl text-dark-gray/70 max-w-2xl mx-auto">Une sélection de mes réalisations les plus impactantes</p>
+      </div>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <!-- Projet 1 -->
+        <div class="card-3d group relative">
+          <div class="absolute -inset-1 bg-gradient-to-r from-coral-pink to-pink-600 rounded-3xl blur-xl opacity-0 group-hover:opacity-50 transition-opacity"></div>
+          <div class="relative glass rounded-3xl overflow-hidden">
+            <div class="h-64 bg-gradient-to-br from-coral-pink/20 to-pink-600/20 flex items-center justify-center">
+              <i class="fas fa-heart text-7xl text-white/20"></i>
+            </div>
+            <div class="p-6 space-y-4">
+              <h3 class="text-2xl font-cyber font-bold group-hover:text-coral-pink transition-colors">ChristianMeet</h3>
+              <p class="text-dark-gray/70 text-sm">Plateforme de rencontre avec authentification sécurisée et messagerie temps réel.</p>
+              <div class="flex flex-wrap gap-2">
+                <span class="px-3 py-1 bg-coral-pink/10 text-coral-pink text-xs rounded-full border border-coral-pink/30">HTML</span>
+                <span class="px-3 py-1 bg-sky-cyan/10 text-sky-cyan text-xs rounded-full border border-sky-cyan/30">CSS</span>
+                <span class="px-3 py-1 bg-electric-violet/10 text-electric-violet text-xs rounded-full border border-electric-violet/30">PHP</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Projet 2 -->
+        <div class="card-3d group relative">
+          <div class="absolute -inset-1 bg-gradient-to-r from-mint-green to-green-400 rounded-3xl blur-xl opacity-0 group-hover:opacity-50 transition-opacity"></div>
+          <div class="relative glass rounded-3xl overflow-hidden">
+            <div class="h-64 bg-gradient-to-br from-mint-green/20 to-green-400/20 flex items-center justify-center">
+              <i class="fas fa-apple-alt text-7xl text-white/20"></i>
+            </div>
+            <div class="p-6 space-y-4">
+              <h3 class="text-2xl font-cyber font-bold group-hover:text-mint-green transition-colors">FruitShop</h3>
+              <p class="text-dark-gray/70 text-sm">E-commerce moderne avec catalogue interactif et panier dynamique.</p>
+              <div class="flex flex-wrap gap-2">
+                <span class="px-3 py-1 bg-coral-pink/10 text-coral-pink text-xs rounded-full border border-coral-pink/30">HTML</span>
+                <span class="px-3 py-1 bg-sky-cyan/10 text-sky-cyan text-xs rounded-full border border-sky-cyan/30">CSS</span>
+                <span class="px-3 py-1 bg-sunset-orange/10 text-sunset-orange text-xs rounded-full border border-sunset-orange/30">JavaScript</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Projet 3 -->
+        <div class="card-3d group relative">
+          <div class="absolute -inset-1 bg-gradient-to-r from-sky-cyan to-blue-400 rounded-3xl blur-xl opacity-0 group-hover:opacity-50 transition-opacity"></div>
+          <div class="relative glass rounded-3xl overflow-hidden">
+            <div class="h-64 bg-gradient-to-br from-sky-cyan/20 to-blue-400/20 flex items-center justify-center">
+              <i class="fas fa-music text-7xl text-white/20"></i>
+            </div>
+            <div class="p-6 space-y-4">
+              <h3 class="text-2xl font-cyber font-bold group-hover:text-sky-cyan transition-colors">Music Production</h3>
+              <p class="text-dark-gray/70 text-sm">Créations musicales originales et projets collaboratifs dans plusieurs genres.</p>
+              <div class="flex flex-wrap gap-2">
+                <span class="px-3 py-1 bg-sky-cyan/10 text-sky-cyan text-xs rounded-full border border-sky-cyan/30">FL Studio</span>
+                <span class="px-3 py-1 bg-electric-violet/10 text-electric-violet text-xs rounded-full border border-electric-violet/30">Audio</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Galerie -->
+  <section id="gallery" class="py-20 bg-transparent">
+    <div class="text-center mb-20">
+        <span class="px-4 py-2 bg-coral-pink/10 text-coral-pink rounded-full text-sm font-bold border border-coral-pink/30">GALLERIE</span>
+        <h2 class="text-5xl lg:text-6xl font-cyber font-bold mb-6">Gallerie de <span class="text-gradient bg-gradient-to-r from-electric-violet to-sky-cyan bg-clip-text text-transparent">Projets</span></h2>
+        <p class="text-xl text-dark-gray/70 max-w-2xl mx-auto">Des réalisations marquantes et variées</p>
+      </div>
+
+      <div class="carousel-container relative overflow-hidden py-10">
+        <div class="carousel-controls absolute inset-0 z-30 flex items-center justify-between pointer-events-none">
+          <button class="carousel-prev pointer-events-auto w-12 h-12 flex items-center justify-center rounded-full bg-white/10 backdrop-blur-sm text-dark-gray hover:bg-electric-violet/20 transition-all duration-300 ml-4 border border-black/10" aria-label="Précédent">
+            <i class="fas fa-chevron-left"></i>
+          </button>
+          <button class="carousel-next pointer-events-auto w-12 h-12 flex items-center justify-center rounded-full bg-white/10 backdrop-blur-sm text-dark-gray hover:bg-electric-violet/20 transition-all duration-300 mr-4 border border-black/10" aria-label="Suivant">
+            <i class="fas fa-chevron-right"></i>
+          </button>
+        </div>
+
+        <div class="carousel-track flex justify-center items-center h-[60vh] perspective-1000">
+          <div class="carousel-slide-wrapper relative w-full h-full flex justify-center items-center">
+            <!-- 9 images -->
+            <div class="carousel-slide absolute transform-style-3d transition-all duration-500 w-[60%] h-[90%] flex items-center justify-center" data-index="0">
+              <img src="image1.jpg" alt="Image 1" class="object-contain w-auto h-auto max-w-full max-h-full rounded-xl shadow-2xl cursor-zoom-in" />
+            </div>
+            <div class="carousel-slide absolute transform-style-3d transition-all duration-500 w-[60%] h-[90%] flex items-center justify-center" data-index="1">
+              <img src="image2.png" alt="Image 2" class="object-contain w-auto h-auto max-w-full max-h-full rounded-xl shadow-2xl cursor-zoom-in" />
+            </div>
+            <div class="carousel-slide absolute transform-style-3d transition-all duration-500 w-[60%] h-[90%] flex items-center justify-center" data-index="2">
+              <img src="image3.png" alt="Image 3" class="object-contain w-auto h-auto max-w-full max-h-full rounded-xl shadow-2xl cursor-zoom-in" />
+            </div>
+            <div class="carousel-slide absolute transform-style-3d transition-all duration-500 w-[60%] h-[90%] flex items-center justify-center" data-index="3">
+              <img src="image4.png" alt="Image 4" class="object-contain w-auto h-auto max-w-full max-h-full rounded-xl shadow-2xl cursor-zoom-in" />
+            </div>
+            <div class="carousel-slide absolute transform-style-3d transition-all duration-500 w-[60%] h-[90%] flex items-center justify-center" data-index="4">
+              <img src="image5.png" alt="Image 5" class="object-contain w-auto h-auto max-w-full max-h-full rounded-xl shadow-2xl cursor-zoom-in" />
+            </div>
+            <div class="carousel-slide absolute transform-style-3d transition-all duration-500 w-[60%] h-[90%] flex items-center justify-center" data-index="5">
+              <img src="image6.png" alt="Image 6" class="object-contain w-auto h-auto max-w-full max-h-full rounded-xl shadow-2xl cursor-zoom-in" />
+            </div>
+            <div class="carousel-slide absolute transform-style-3d transition-all duration-500 w-[60%] h-[90%] flex items-center justify-center" data-index="6">
+              <img src="image7.png" alt="Image 7" class="object-contain w-auto h-auto max-w-full max-h-full rounded-xl shadow-2xl cursor-zoom-in" />
+            </div>
+            <div class="carousel-slide absolute transform-style-3d transition-all duration-500 w-[60%] h-[90%] flex items-center justify-center" data-index="7">
+              <img src="image8.png" alt="Image 8" class="object-contain w-auto h-auto max-w-full max-h-full rounded-xl shadow-2xl cursor-zoom-in" />
+            </div>
+            <div class="carousel-slide absolute transform-style-3d transition-all duration-500 w-[60%] h-[90%] flex items-center justify-center" data-index="8">
+              <img src="image9.png" alt="Image 9" class="object-contain w-auto h-auto max-w-full max-h-full rounded-xl shadow-2xl cursor-zoom-in" />
+            </div>
+          </div>
+        </div>
+
+        <div class="carousel-indicators flex justify-center gap-3 mt-8">
+          <button class="carousel-indicator w-3 h-3 rounded-full bg-black/20 hover:bg-electric-violet transition-all duration-300" data-slide="0" aria-label="Slide 1"></button>
+          <button class="carousel-indicator w-3 h-3 rounded-full bg-black/20 hover:bg-electric-violet transition-all duration-300" data-slide="1" aria-label="Slide 2"></button>
+          <button class="carousel-indicator w-3 h-3 rounded-full bg-black/20 hover:bg-electric-violet transition-all duration-300" data-slide="2" aria-label="Slide 3"></button>
+          <button class="carousel-indicator w-3 h-3 rounded-full bg-black/20 hover:bg-electric-violet transition-all duration-300" data-slide="3" aria-label="Slide 4"></button>
+          <button class="carousel-indicator w-3 h-3 rounded-full bg-black/20 hover:bg-electric-violet transition-all duration-300" data-slide="4" aria-label="Slide 5"></button>
+          <button class="carousel-indicator w-3 h-3 rounded-full bg-black/20 hover:bg-electric-violet transition-all duration-300" data-slide="5" aria-label="Slide 6"></button>
+          <button class="carousel-indicator w-3 h-3 rounded-full bg-black/20 hover:bg-electric-violet transition-all duration-300" data-slide="6" aria-label="Slide 7"></button>
+          <button class="carousel-indicator w-3 h-3 rounded-full bg-black/20 hover:bg-electric-violet transition-all duration-300" data-slide="7" aria-label="Slide 8"></button>
+          <button class="carousel-indicator w-3 h-3 rounded-full bg-black/20 hover:bg-electric-violet transition-all duration-300" data-slide="8" aria-label="Slide 9"></button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Musique -->
+  <section id="musique" class="py-20 px-4 bg-soft-gray/30">
+    <div class="max-w-7xl mx-auto">
+      <div class="text-center mb-20">
+        <span class="px-4 py-2 bg-sky-cyan/10 text-sky-cyan rounded-full text-sm font-bold border border-sky-cyan/30">MUSIQUE</span>
+        <h2 class="text-5xl lg:text-6xl font-cyber font-bold mb-6">Productions <span class="text-gradient bg-gradient-to-r from-electric-violet to-sky-cyan bg-clip-text text-transparent">Musicales</span></h2>
+        <p class="text-xl text-dark-gray/70 max-w-2xl mx-auto">Découvrez une sélection de mes beats et productions originales</p>
+      </div>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <!-- Beat 1 -->
+        <div class="audio-player glass rounded-2xl p-6">
+          <div class="flex items-center justify-between mb-4">
+            <div>
+              <h3 class="text-xl font-bold">Midnight Vibes</h3>
+              <p class="text-dark-gray/60 text-sm">Trap • 140 BPM</p>
+            </div>
+            <div class="flex gap-1 text-xs">
+              <span class="px-2 py-1 bg-coral-pink/10 text-coral-pink rounded-full">Trap</span>
+              <span class="px-2 py-1 bg-pink-500/10 text-pink-500 rounded-full">Dark</span>
+            </div>
+          </div>
+          <div class="flex items-center gap-4">
+            <button class="w-12 h-12 rounded-full bg-coral-pink text-white flex items-center justify-center hover:scale-110 transition-transform" aria-label="Lire Midnight Vibes" title="Lire Midnight Vibes">
+              <i class="fas fa-play" aria-hidden="true"></i>
+            </button>
+            <div class="flex-1 h-2 bg-gray-200 rounded-full overflow-hidden">
+              <div class="h-full bg-coral-pink rounded-full" style="width: 0%"></div>
+            </div>
+            <span class="text-sm text-dark-gray/60">3:24</span>
+          </div>
+        </div>
+
+        <!-- Beat 2 -->
+        <div class="audio-player glass rounded-2xl p-6">
+          <div class="flex items-center justify-between mb-4">
+            <div>
+              <h3 class="text-xl font-bold">Summer Waves</h3>
+              <p class="text-dark-gray/60 text-sm">Afrobeat • 128 BPM</p>
+            </div>
+            <div class="flex gap-1 text-xs">
+              <span class="px-2 py-1 bg-sunset-orange/10 text-sunset-orange rounded-full">Afrobeat</span>
+              <span class="px-2 py-1 bg-yellow-500/10 text-yellow-500 rounded-full">Vibes</span>
+            </div>
+          </div>
+          <div class="flex items-center gap-4">
+            <button class="w-12 h-12 rounded-full bg-sunset-orange text-white flex items-center justify-center hover:scale-110 transition-transform" aria-label="Lire Summer Waves" title="Lire Summer Waves">
+              <i class="fas fa-play" aria-hidden="true"></i>
+            </button>
+            <div class="flex-1 h-2 bg-gray-200 rounded-full overflow-hidden">
+              <div class="h-full bg-sunset-orange rounded-full" style="width: 0%"></div>
+            </div>
+            <span class="text-sm text-dark-gray/60">2:56</span>
+          </div>
+        </div>
+
+        <!-- Beat 3 -->
+        <div class="audio-player glass rounded-2xl p-6">
+          <div class="flex items-center justify-between mb-4">
+            <div>
+              <h3 class="text-xl font-bold">Electric Dreams</h3>
+              <p class="text-dark-gray/60 text-sm">Electronic • 125 BPM</p>
+            </div>
+            <div class="flex gap-1 text-xs">
+              <span class="px-2 py-1 bg-sky-cyan/10 text-sky-cyan rounded-full">Electronic</span>
+              <span class="px-2 py-1 bg-blue-500/10 text-blue-500 rounded-full">Chill</span>
+            </div>
+          </div>
+          <div class="flex items-center gap-4">
+            <button class="w-12 h-12 rounded-full bg-sky-cyan text-white flex items-center justify-center hover:scale-110 transition-transform" aria-label="Lire Electric Dreams" title="Lire Electric Dreams">
+              <i class="fas fa-play" aria-hidden="true"></i>
+            </button>
+            <div class="flex-1 h-2 bg-gray-200 rounded-full overflow-hidden">
+              <div class="h-full bg-sky-cyan rounded-full" style="width: 0%"></div>
+            </div>
+            <span class="text-sm text-dark-gray/60">4:12</span>
+          </div>
+        </div>
+
+        <!-- Beat 4 -->
+        <div class="audio-player glass rounded-2xl p-6">
+          <div class="flex items-center justify-between mb-4">
+            <div>
+              <h3 class="text-xl font-bold">Urban Flow</h3>
+              <p class="text-dark-gray/60 text-sm">Hip-Hop • 90 BPM</p>
+            </div>
+            <div class="flex gap-1 text-xs">
+              <span class="px-2 py-1 bg-mint-green/10 text-mint-green rounded-full">Hip-Hop</span>
+              <span class="px-2 py-1 bg-emerald-500/10 text-emerald-500 rounded-full">Boom Bap</span>
+            </div>
+          </div>
+          <div class="flex items-center gap-4">
+            <button class="w-12 h-12 rounded-full bg-mint-green text-white flex items-center justify-center hover:scale-110 transition-transform" aria-label="Lire Urban Flow" title="Lire Urban Flow">
+              <i class="fas fa-play" aria-hidden="true"></i>
+            </button>
+            <div class="flex-1 h-2 bg-gray-200 rounded-full overflow-hidden">
+              <div class="h-full bg-mint-green rounded-full" style="width: 0%"></div>
+            </div>
+            <span class="text-sm text-dark-gray/60">3:45</span>
+          </div>
+        </div>
+
+        <!-- Beat 5 -->
+        <div class="audio-player glass rounded-2xl p-6">
+          <div class="flex items-center justify-between mb-4">
+            <div>
+              <h3 class="text-xl font-bold">Neon Nights</h3>
+              <p class="text-dark-gray/60 text-sm">Synthwave • 110 BPM</p>
+            </div>
+            <div class="flex gap-1 text-xs">
+              <span class="px-2 py-1 bg-electric-violet/10 text-electric-violet rounded-full">Synthwave</span>
+              <span class="px-2 py-1 bg-purple-500/10 text-purple-500 rounded-full">Retro</span>
+            </div>
+          </div>
+          <div class="flex items-center gap-4">
+            <button class="w-12 h-12 rounded-full bg-electric-violet text-white flex items-center justify-center hover:scale-110 transition-transform" aria-label="Lire Neon Nights" title="Lire Neon Nights">
+              <i class="fas fa-play" aria-hidden="true"></i>
+            </button>
+            <div class="flex-1 h-2 bg-gray-200 rounded-full overflow-hidden">
+              <div class="h-full bg-electric-violet rounded-full" style="width: 0%"></div>
+            </div>
+            <span class="text-sm text-dark-gray/60">3:58</span>
+          </div>
+        </div>
+
+        <!-- Beat 6 -->
+        <div class="audio-player glass rounded-2xl p-6">
+          <div class="flex items-center justify-between mb-4">
+            <div>
+              <h3 class="text-xl font-bold">Cloud Nine</h3>
+              <p class="text-dark-gray/60 text-sm">Lo-Fi • 85 BPM</p>
+            </div>
+            <div class="flex gap-1 text-xs">
+              <span class="px-2 py-1 bg-indigo-500/10 text-indigo-500 rounded-full">Lo-Fi</span>
+              <span class="px-2 py-1 bg-violet-500/10 text-violet-500 rounded-full">Chill</span>
+            </div>
+          </div>
+          <div class="flex items-center gap-4">
+            <button class="w-12 h-12 rounded-full bg-indigo-500 text-white flex items-center justify-center hover:scale-110 transition-transform" aria-label="Lire Cloud Nine" title="Lire Cloud Nine">
+              <i class="fas fa-play" aria-hidden="true"></i>
+            </button>
+            <div class="flex-1 h-2 bg-gray-200 rounded-full overflow-hidden">
+              <div class="h-full bg-indigo-500 rounded-full" style="width: 0%"></div>
+            </div>
+            <span class="text-sm text-dark-gray/60">2:34</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Témoignages -->
+  <section class="py-32 bg-soft-gray/30">
+    <div class="max-w-7xl mx-auto px-6 lg:px-8">
+      <div class="text-center mb-20">
+        <span class="px-4 py-2 bg-mint-green/10 text-mint-green rounded-full text-sm font-bold border border-mint-green/30">TÉMOIGNAGES</span>
+        <h2 class="text-5xl lg:text-6xl font-cyber font-bold mb-6">Retours <span class="text-gradient bg-gradient-to-r from-electric-violet to-sky-cyan bg-clip-text text-transparent">Clients</span></h2>
+        <div class="mt-6">
+          <button id="testimonial-open" type="button" aria-haspopup="dialog" aria-controls="testimonial-modal" aria-expanded="false" class="inline-flex items-center gap-3 px-6 py-3 bg-mint-green text-white rounded-full font-bold shadow-lg hover:scale-105 transition-transform">
+            <i class="fas fa-comment-dots" aria-hidden="true"></i>
+            <span>Laisser un témoignage</span>
+          </button>
+        </div>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-8">
+        <div class="glass rounded-3xl p-8 space-y-6">
+          <div class="flex gap-1 text-yellow-500 text-xl">
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+          </div>
+          <p class="text-dark-gray/80 leading-relaxed italic">
+            "Service exceptionnel ! L'équipe a été très professionnelle et à l'écoute de nos besoins. Je recommande vivement leurs services."
+          </p>
+          <div class="flex items-center gap-4 pt-4 border-t border-black/10">
+            <div class="w-14 h-14 rounded-full bg-gradient-to-br from-coral-pink to-pink-600 flex items-center justify-center font-bold text-lg text-white">MD</div>
+            <div>
+              <div class="font-bold">Marie Dubois</div>
+              <div class="text-sm text-dark-gray/60">Cliente</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="glass rounded-3xl p-8 space-y-6">
+          <div class="flex gap-1 text-yellow-500 text-xl">
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="far fa-star"></i>
+          </div>
+          <p class="text-dark-gray/80 leading-relaxed italic">
+            "Très satisfait de la prestation. Délais respectés et qualité au rendez-vous. Une petite amélioration sur la communication serait parfaite."
+          </p>
+          <div class="flex items-center gap-4 pt-4 border-t border-black/10">
+            <div class="w-14 h-14 rounded-full bg-gradient-to-br from-mint-green to-green-400 flex items-center justify-center font-bold text-lg text-white">PM</div>
+            <div>
+              <div class="font-bold">Pierre Martin</div>
+              <div class="text-sm text-dark-gray/60">Client</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="glass rounded-3xl p-8 space-y-6">
+          <div class="flex gap-1 text-yellow-500 text-xl">
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+          </div>
+          <p class="text-dark-gray/80 leading-relaxed italic">
+            "Absolument parfait ! Résultats au-delà de mes attentes. Je ferai à nouveau appel à leurs services sans hésitation."
+          </p>
+          <div class="flex items-center gap-4 pt-4 border-t border-black/10">
+            <div class="w-14 h-14 rounded-full bg-gradient-to-br from-sky-cyan to-blue-400 flex items-center justify-center font-bold text-lg text-white">SL</div>
+            <div>
+              <div class="font-bold">Sophie Laurent</div>
+              <div class="text-sm text-dark-gray/60">Cliente</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonial Modal (hidden by default) -->
+  <div id="testimonial-modal" role="dialog" aria-modal="true" aria-hidden="true" class="fixed inset-0 z-50 hidden items-center justify-center px-4">
+    <div class="absolute inset-0 bg-black/60" data-modal-backdrop></div>
+    <div class="relative max-w-2xl w-full bg-white rounded-2xl shadow-2xl glass p-8 z-10">
+      <div class="flex items-start justify-between mb-4">
+        <h3 class="text-2xl font-bold">Laisser un témoignage</h3>
+        <button id="testimonial-close" type="button" aria-label="Fermer le formulaire" class="text-gray-500 hover:text-gray-800">
+          <i class="fas fa-times" aria-hidden="true"></i>
+        </button>
+      </div>
+
+      <form id="testimonial-form" class="space-y-4" action="#" method="POST">
+        <div class="grid md:grid-cols-2 gap-4">
+          <label class="sr-only" for="test-name">Nom</label>
+          <input id="test-name" name="name" type="text" required placeholder="Votre nom" class="w-full px-4 py-3 rounded-xl border-2 border-transparent focus:border-mint-green outline-none text-dark-gray" />
+          <label class="sr-only" for="test-role">Rôle</label>
+          <input id="test-role" name="role" type="text" placeholder="Votre rôle / entreprise (optionnel)" class="w-full px-4 py-3 rounded-xl border-2 border-transparent focus:border-mint-green outline-none text-dark-gray" />
+        </div>
+
+        <label class="sr-only" for="test-message">Message</label>
+        <textarea id="test-message" name="message" rows="5" required placeholder="Votre témoignage..." class="w-full px-4 py-3 rounded-xl border-2 border-transparent focus:border-mint-green outline-none text-dark-gray resize-none"></textarea>
+
+        <div class="flex items-center justify-between gap-4">
+          <div class="flex items-center gap-3">
+            <label for="test-rating" class="text-sm text-dark-gray/80">Note</label>
+            <select id="test-rating" name="rating" class="px-3 py-2 rounded-full border-2 border-transparent focus:border-mint-green outline-none">
+              <option value="5">5 ★</option>
+              <option value="4">4 ★</option>
+              <option value="3">3 ★</option>
+              <option value="2">2 ★</option>
+              <option value="1">1 ★</option>
+            </select>
+          </div>
+
+          <div class="flex items-center gap-3">
+            <button type="submit" class="px-6 py-3 bg-mint-green text-white rounded-full font-bold">Envoyer</button>
+            <button type="button" id="testimonial-cancel" class="px-6 py-3 glass rounded-full">Annuler</button>
+          </div>
+        </div>
+        <p id="testimonial-thanks" class="hidden text-green-600 font-medium">Merci ! Votre témoignage a bien été reçu.</p>
+      </form>
+    </div>
+  </div>
+
+  <!-- Contact -->
+  <section id="contact" class="py-32 bg-soft-gray/30">
+        <div class="text-center mb-12">
+          <span class="px-4 py-2 bg-electric-violet/10 text-electric-violet rounded-full text-sm font-bold border border-electric-violet/30">CONTACT</span>
+          <h2 class="text-4xl lg:text-5xl font-cyber font-bold mt-4">Lançons votre <span class="text-gradient bg-gradient-to-r from-electric-violet to-sky-cyan bg-clip-text text-transparent">projet</span></h2>
+          <p class="text-xl text-dark-gray/70 max-w-2xl mx-auto mt-4">Discutons de vos idées et donnons vie à votre vision</p>
+        </div>
+
+        <div class="grid lg:grid-cols-2 gap-12 max-w-6xl mx-auto">
+        <!-- Formulaire -->
+        <div class="glass rounded-3xl p-8 sm:p-10 card-hover">
+          <h3 class="text-2xl font-bold text-dark-gray mb-6">Envoyez-nous un message</h3>
+          <form class="space-y-6">
+            <div>
+              <label class="block text-sm font-semibold text-dark-gray mb-2">
+                <i class="fas fa-user text-mint-green mr-2"></i>Nom Complet
+              </label>
+              <input 
+                type="text" 
+                class="w-full px-4 py-3 border-2 border-mint-green/30 rounded-xl focus:outline-none focus:border-mint-green transition-all bg-white text-dark-gray"
+                placeholder="Votre nom"
+                required
+              >
+            </div>
+
+            <div>
+              <label class="block text-sm font-semibold text-dark-gray mb-2">
+                <i class="fas fa-envelope text-mint-green mr-2"></i>Email
+              </label>
+              <input 
+                type="email" 
+                class="w-full px-4 py-3 border-2 border-mint-green/30 rounded-xl focus:outline-none focus:border-mint-green transition-all bg-white text-dark-gray"
+                placeholder="votre@email.com"
+                required
+              >
+            </div>
+
+            <div>
+              <label class="block text-sm font-semibold text-dark-gray mb-2">
+                <i class="fas fa-phone text-mint-green mr-2"></i>Téléphone
+              </label>
+              <input 
+                type="tel" 
+                class="w-full px-4 py-3 border-2 border-mint-green/30 rounded-xl focus:outline-none focus:border-mint-green transition-all bg-white text-dark-gray"
+                placeholder="+225 XX XX XX XX XX"
+              >
+            </div>
+
+            <div>
+              <label class="block text-sm font-semibold text-dark-gray mb-2">
+                <i class="fas fa-message text-mint-green mr-2"></i>Message
+              </label>
+              <textarea 
+                rows="4"
+                class="w-full px-4 py-3 border-2 border-mint-green/30 rounded-xl focus:outline-none focus:border-mint-green transition-all bg-white text-dark-gray"
+                placeholder="Votre message..."
+                required
+              ></textarea>
+            </div>
+
+            <button 
+              type="submit" 
+              class="w-full bg-mint-green text-white py-4 rounded-xl font-bold text-lg shadow-lg hover:shadow-2xl transform hover:scale-105 transition-all"
+            >
+              <i class="fas fa-paper-plane mr-2"></i>
+              Envoyer le Message
+            </button>
+          </form>
+        </div>
+
+        <!-- Informations de Contact -->
+        <div class="space-y-6">
+          <!-- Adresse -->
+          <div class="glass rounded-2xl p-6 card-hover">
+            <div class="flex items-start">
+              <div class="w-14 h-14 bg-mint-green rounded-full flex items-center justify-center mr-4 flex-shrink-0">
+                <i class="fas fa-map-marker-alt text-2xl text-white"></i>
+              </div>
+              <div>
+                <h4 class="text-xl font-bold text-dark-gray mb-2">Adresse</h4>
+                <p class="text-dark-gray/70">Bouaké<br>Côte d'Ivoire</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Téléphone -->
+          <div class="glass rounded-2xl p-6 card-hover">
+            <div class="flex items-start">
+              <div class="w-14 h-14 bg-sky-cyan rounded-full flex items-center justify-center mr-4 flex-shrink-0">
+                <i class="fas fa-phone text-2xl text-white"></i>
+              </div>
+              <div>
+                <h4 class="text-xl font-bold text-dark-gray mb-2">Téléphone</h4>
+                <p class="text-dark-gray/70">+225 07 05 59 51 86<br>+225 01 50 17 07 24</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Email -->
+          <div class="glass rounded-2xl p-6 card-hover">
+            <div class="flex items-start">
+              <div class="w-14 h-14 bg-electric-violet rounded-full flex items-center justify-center mr-4 flex-shrink-0">
+                <i class="fas fa-envelope text-2xl text-white"></i>
+              </div>
+              <div>
+                <h4 class="text-xl font-bold text-dark-gray mb-2">Email</h4>
+                <p class="text-dark-gray/70">aurioledev@gmail.com<br>jovienauriole@gmail.com</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Réseaux Sociaux -->
+          <div class="glass rounded-2xl p-6 card-hover">
+            <h4 class="text-xl font-bold text-dark-gray mb-4 text-center">Suivez-moi</h4>
+            <div class="flex justify-center space-x-4">
+              <a href="https://wa.me/2250705595186" class="w-12 h-12 bg-mint-green rounded-full flex items-center justify-center hover:bg-mint-green/80 transition-all transform hover:scale-110">
+                <i class="fab fa-whatsapp text-white text-xl"></i>
+              </a>
+              <a href="https://www.facebook.com/profile.php?id=61553416418279" class="w-12 h-12 bg-blue-700 rounded-full flex items-center justify-center hover:bg-blue-700/80 transition-all transform hover:scale-110">
+                <i class="fab fa-facebook-f text-white text-xl"></i>
+              </a>
+              <a href="https://x.com/AurioleDion" class="w-12 h-12 bg-black rounded-full flex items-center justify-center hover:bg-black/80 transition-all transform hover:scale-110">
+                <i class="fa-brands fa-x-twitter text-white text-xl"></i>
+              </a>
+              <a href="https://www.instagram.com/auriole.dev/" class="w-12 h-12 rounded-full flex items-center justify-center hover:opacity-90 transition-all transform hover:scale-110 bg-gradient-to-tr from-yellow-400 via-pink-500 to-purple-600">
+                <i class="fab fa-instagram text-white text-xl"></i>
+              </a>
+              <a href="https://www.linkedin.com/in/kelly-jovien-auriole-dion-88b411379" class="w-12 h-12 bg-blue-700 rounded-full flex items-center justify-center hover:bg-blue-700/80 transition-all transform hover:scale-110">
+                <i class="fab fa-linkedin-in text-white text-xl"></i>
+              </a>
+              <a href="https://github.com/DevCoder021" class="w-12 h-12 bg-black rounded-full flex items-center justify-center hover:bg-black/80 transition-all transform hover:scale-110">
+                <i class="fab fa-github text-white text-xl"></i>
+              </a>
+
+            </div>
+          </div>
+
+        </div>
+      </div>
+  </section>
+
+  <!-- Footer Ultra Moderne -->
+    <footer class="py-16 border-t border-gray-700/10 relative overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-t from-neon-red/5 to-transparent"></div>
+        
+        <div class="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
+            <div class="grid md:grid-cols-3 gap-12 mb-12">
+                <!-- Colonne 1 -->
+                <div class="space-y-4">
+                    <div class="text-3xl font-cyber font-bold text-gradient bg-gradient-to-r from-electric-violet to-sky-cyan bg-clip-text text-transparent">AURIOLE DION</div>
+                    <p class="text-gray-400">
+                        Développeur Full-Stack • Designer • Producteur Musical
+                    </p>
+                </div>
+
+                <!-- Colonne 2 -->
+                <div class="space-y-4">
+                    <h3 class="text-lg font-bold text-neon-green">Navigation</h3>
+                    <div class="flex flex-col space-y-2">
+                        <a href="#home" class="text-gray-400 hover:text-electric-violet transition-colors">Accueil</a>
+                        <a href="#about" class="text-gray-400 hover:text-electric-violet transition-colors">À propos</a>
+                        <a href="#skills" class="text-gray-400 hover:text-electric-violet transition-colors">Compétences</a>
+                        <a href="#projects" class="text-gray-400 hover:text-electric-violet transition-colors">Projets</a>
+                        <a href="#contact" class="text-gray-400 hover:text-electric-violet transition-colors">Contact</a>
+                    </div>
+                </div>
+
+                <!-- Colonne 3 -->
+                <div class="space-y-4">
+                    <h3 class="text-lg font-bold text-cyber-blue">Contact</h3>
+                    <div class="flex flex-col space-y-2 text-gray-400">
+                        <a href="mailto:aurioledev@gmail.com" class="hover:text-electric-violet transition-colors flex items-center gap-2">
+                            <i class="fas fa-envelope"></i>
+                            aurioledev@gmail.com
+                        </a>
+                        <p class="flex items-center gap-2">
+                            <i class="fas fa-map-marker-alt"></i>
+                            Bouaké, Côte d'Ivoire
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Copyright -->
+            <div class="pt-8 border-t border-white/10 text-center">
+                <p class="text-gray-400">
+                    &copy; 2025 Auriole Dion. Tous droits réservés. Conçu avec 
+                    <span class="text-neon-red animate-pulse">❤</span> et 
+                    <span class="text-gradient font-semibold">passion</span>
+                </p>
+            </div>
+        </div>
+    </footer>
+
+  <!-- Scroll to top -->
+  <button id="scrollTop" type="button" title="Retour en haut" aria-label="Retour en haut" onclick="window.scrollTo({top: 0, behavior: 'smooth'})" class="fixed bottom-8 right-8 w-14 h-14 glass rounded-full flex items-center justify-center shadow-2xl hover:scale-110 transition-all z-50 opacity-0 pointer-events-none">
+    <i class="fas fa-arrow-up text-electric-violet text-xl transform-style-3d" aria-hidden="true"></i>
+    <span class="sr-only">Retour en haut</span>
+  </button>
+
+  <!-- JS -->
+  <script>
+    // Burger
+    const burger = document.getElementById('burger');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const mobileClose = document.getElementById('mobile-close');
+    if (burger && mobileMenu) {
+      burger.addEventListener('click', () => {
+        const expanded = burger.getAttribute('aria-expanded') === 'true';
+        burger.setAttribute('aria-expanded', String(!expanded));
+        burger.classList.toggle('burger-open');
+        mobileMenu.classList.toggle('translate-x-full');
+        // focus first link for accessibility
+        const firstLink = mobileMenu.querySelector('a');
+        if (firstLink) firstLink.focus();
+      });
+
+      if (mobileClose) {
+        mobileClose.addEventListener('click', () => {
+          burger.setAttribute('aria-expanded', 'false');
+          burger.classList.remove('burger-open');
+          mobileMenu.classList.add('translate-x-full');
+        });
+      }
+
+      // close menu on Escape
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && !mobileMenu.classList.contains('translate-x-full')) {
+          burger.setAttribute('aria-expanded', 'false');
+          burger.classList.remove('burger-open');
+          mobileMenu.classList.add('translate-x-full');
+        }
+      });
+    }
+
+    // Scroll reveal
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.opacity = '1';
+          entry.target.style.transform = 'translateY(0)';
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('section').forEach(section => {
+      section.style.opacity = '0';
+      section.style.transform = 'translateY(50px)';
+      section.style.transition = 'opacity 0.8s ease-out, transform 0.8s ease-out';
+      observer.observe(section);
+    });
+
+    // Scroll to top button
+    window.addEventListener('scroll', () => {
+      const scrollTop = document.getElementById('scrollTop');
+      if (window.scrollY > 500) {
+        scrollTop.classList.remove('opacity-0', 'pointer-events-none');
+        scrollTop.classList.add('opacity-100');
+      } else {
+        scrollTop.classList.add('opacity-0', 'pointer-events-none');
+        scrollTop.classList.remove('opacity-100');
+      }
+    });
+
+    document.addEventListener('DOMContentLoaded', function() {
+            const slides = document.querySelectorAll('.carousel-slide');
+            const prevButton = document.querySelector('.carousel-prev');
+            const nextButton = document.querySelector('.carousel-next');
+            const indicators = document.querySelectorAll('.carousel-indicator');
+
+            let currentIndex = 0;
+            const slideCount = slides.length;
+            
+            // Ajouter les styles CSS nécessaires pour l'effet 3D
+            const style = document.createElement('style');
+            style.textContent = `
+                .perspective-1000 {
+                    perspective: 1000px;
+                }
+                .transform-style-3d {
+                    transform-style: preserve-3d;
+                }
+            `;
+            document.head.appendChild(style);
+
+            // Fonction pour mettre à jour la position des slides
+            function updateCarousel() {
+                slides.forEach((slide, index) => {
+                    // Calculer la position relative par rapport à l'index actuel
+                    const offset = index - currentIndex;
+
+                    // Réinitialiser effets
+                    slide.style.filter = 'none';
+                    slide.classList.remove('glass');
+                    
+                    // Appliquer les transformations 3D sans changer l'échelle
+                    if (offset === 0) {
+                        // Slide actif au centre (net, au premier plan)
+                        slide.style.transform = `translateX(0) rotateY(0deg) translateZ(160px)`;
+                        slide.style.opacity = '1';
+                        slide.style.zIndex = '10';
+                    } else if (offset === -1 || offset === slideCount - 1) {
+                        // Slide à gauche (léger flou + glassmorphisme)
+                        slide.style.transform = `translateX(-70%) rotateY(25deg) translateZ(0)`;
+                        slide.style.opacity = '0.85';
+                        slide.style.filter = 'blur(4px) brightness(0.95) saturate(0.95)';
+                        slide.style.zIndex = '5';
+                        slide.classList.add('glass');
+                    } else if (offset === 1 || offset === -(slideCount - 1)) {
+                        // Slide à droite (léger flou + glassmorphisme)
+                        slide.style.transform = `translateX(70%) rotateY(-25deg) translateZ(0)`;
+                        slide.style.opacity = '0.85';
+                        slide.style.filter = 'blur(4px) brightness(0.95) saturate(0.95)';
+                        slide.style.zIndex = '5';
+                        slide.classList.add('glass');
+                    } else if (offset < -1) {
+                        // Slides plus éloignés à gauche (flou plus marqué)
+                        slide.style.transform = `translateX(-120%) rotateY(35deg) translateZ(-120px)`;
+                        slide.style.opacity = '0.5';
+                        slide.style.filter = 'blur(6px) brightness(0.9) saturate(0.9)';
+                        slide.style.zIndex = '1';
+                        slide.classList.add('glass');
+                    } else {
+                        // Slides plus éloignés à droite (flou plus marqué)
+                        slide.style.transform = `translateX(120%) rotateY(-35deg) translateZ(-120px)`;
+                        slide.style.opacity = '0.5';
+                        slide.style.filter = 'blur(6px) brightness(0.9) saturate(0.9)';
+                        slide.style.zIndex = '1';
+                        slide.classList.add('glass');
+                    }
+                });
+                
+                // Mettre à jour les indicateurs
+                indicators.forEach((indicator, index) => {
+                    indicator.classList.toggle('bg-neon-green', index === currentIndex);
+                    indicator.classList.toggle('bg-white/30', index !== currentIndex);
+                });
+            }
+
+            // Événements pour les boutons de navigation
+            prevButton.addEventListener('click', () => {
+                currentIndex = (currentIndex - 1 + slideCount) % slideCount;
+                updateCarousel();
+            });
+
+            nextButton.addEventListener('click', () => {
+                currentIndex = (currentIndex + 1) % slideCount;
+                updateCarousel();
+            });
+
+            // Événements pour les indicateurs
+            indicators.forEach((indicator, index) => {
+                indicator.addEventListener('click', () => {
+                    currentIndex = index;
+                    updateCarousel();
+                });
+            });
+
+            // Lightbox simple
+            const lightbox = document.createElement('div');
+            lightbox.id = 'lightbox';
+            lightbox.className = 'fixed inset-0 bg-black/90 z-50 hidden flex items-center justify-center';
+            lightbox.innerHTML = '<img class="max-w-[90vw] max-h-[90vh] rounded-xl shadow-2xl" />';
+            document.body.appendChild(lightbox);
+
+            const lightboxImg = lightbox.querySelector('img');
+            slides.forEach(slide => {
+                const img = slide.querySelector('img');
+                img.addEventListener('click', () => {
+                    lightboxImg.src = img.src;
+                    lightbox.classList.remove('hidden');
+                });
+            });
+
+            lightbox.addEventListener('click', () => {
+                lightbox.classList.add('hidden');
+            });
+
+            // Initialiser le carousel
+              updateCarousel();
+            });
+
+    // Testimonial modal handling
+    (function(){
+      const openBtn = document.getElementById('testimonial-open');
+      const modal = document.getElementById('testimonial-modal');
+      const closeBtn = document.getElementById('testimonial-close');
+      const cancelBtn = document.getElementById('testimonial-cancel');
+      const backdrop = modal ? modal.querySelector('[data-modal-backdrop]') : null;
+      const form = document.getElementById('testimonial-form');
+      const thanks = document.getElementById('testimonial-thanks');
+      let lastFocused = null;
+
+      if (!openBtn || !modal) return;
+
+      function showModal() {
+        lastFocused = document.activeElement;
+        modal.classList.remove('hidden');
+        modal.setAttribute('aria-hidden','false');
+        openBtn.setAttribute('aria-expanded','true');
+        // focus first input
+        const first = modal.querySelector('input, textarea, button, select');
+        if (first) first.focus();
+        document.addEventListener('keydown', trapKey);
+      }
+
+      function hideModal() {
+        modal.classList.add('hidden');
+        modal.setAttribute('aria-hidden','true');
+        openBtn.setAttribute('aria-expanded','false');
+        if (lastFocused) lastFocused.focus();
+        document.removeEventListener('keydown', trapKey);
+      }
+
+      function trapKey(e) {
+        if (e.key === 'Escape') {
+          hideModal();
+        }
+        if (e.key === 'Tab') {
+          const focusable = modal.querySelectorAll('a[href], button:not([disabled]), input, textarea, select');
+          if (!focusable.length) return;
+          const first = focusable[0];
+          const last = focusable[focusable.length -1];
+          if (e.shiftKey && document.activeElement === first) {
+            e.preventDefault();
+            last.focus();
+          } else if (!e.shiftKey && document.activeElement === last) {
+            e.preventDefault();
+            first.focus();
+          }
+        }
+      }
+
+      openBtn.addEventListener('click', showModal);
+      closeBtn && closeBtn.addEventListener('click', hideModal);
+      cancelBtn && cancelBtn.addEventListener('click', hideModal);
+      backdrop && backdrop.addEventListener('click', hideModal);
+
+      if (form) {
+        form.addEventListener('submit', (e) => {
+          e.preventDefault();
+          if (!form.checkValidity()) {
+            form.reportValidity();
+            return;
+          }
+          // Minimal client-side handling: show thanks message, reset form, close modal
+          if (thanks) {
+            thanks.classList.remove('hidden');
+          }
+          form.reset();
+          setTimeout(() => {
+            if (thanks) thanks.classList.add('hidden');
+            hideModal();
+          }, 1400);
+        });
+      }
+    })();
+
+  </script>
+
+  <!-- JS -->
+      <script>
+        (function(){
+          'use strict';
+
+          // Small helper
+          const safeQuery = (sel, ctx = document) => {
+            try { return ctx.querySelector(sel); } catch(e) { return null; }
+          };
+
+          document.addEventListener('DOMContentLoaded', () => {
+            // Menu burger (robuste si éléments manquants)
+            const burger = document.getElementById('burger');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const mobileClose = document.getElementById('mobile-close');
+            let mobileLinks = document.querySelectorAll('.mobile-link');
+            if ((!mobileLinks || mobileLinks.length === 0) && mobileMenu) {
+              mobileLinks = mobileMenu.querySelectorAll('a');
+            }
+
+            if (burger && mobileMenu) {
+              burger.addEventListener('click', () => {
+                const expanded = burger.getAttribute('aria-expanded') === 'true';
+                burger.setAttribute('aria-expanded', String(!expanded));
+                burger.classList.toggle('burger-open');
+                mobileMenu.classList.toggle('translate-x-full');
+                const firstLink = mobileMenu.querySelector('a');
+                if (firstLink) firstLink.focus();
+              });
+
+              mobileLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                  burger.setAttribute('aria-expanded','false');
+                  burger.classList.remove('burger-open');
+                  mobileMenu.classList.add('translate-x-full');
+                });
+              });
+
+              if (mobileClose) mobileClose.addEventListener('click', () => {
+                burger.setAttribute('aria-expanded','false');
+                burger.classList.remove('burger-open');
+                mobileMenu.classList.add('translate-x-full');
+              });
+
+              document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && !mobileMenu.classList.contains('translate-x-full')) {
+                  burger.setAttribute('aria-expanded','false');
+                  burger.classList.remove('burger-open');
+                  mobileMenu.classList.add('translate-x-full');
+                }
+              });
+            }
+
+            // Smooth scroll pour les liens (sécurisé pour href="#" ou sélecteurs invalides)
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+              anchor.addEventListener('click', function (e) {
+                const href = this.getAttribute('href');
+                // if link opens mobile menu or external, skip
+                if (!href) return;
+                if (href === '#') {
+                  e.preventDefault();
+                  window.scrollTo({ top: 0, behavior: 'smooth' });
+                  return;
+                }
+
+                // Only handle same-page anchors
+                if (href.startsWith('#')) {
+                  e.preventDefault();
+                  try {
+                    const target = document.querySelector(href);
+                    if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                  } catch (err) {
+                    console.warn('Smooth scroll: invalid selector', href, err);
+                  }
+                }
+              });
+            });
+
+            // Navbar hide/show and scroll-to-top
+            const navbar = document.getElementById('navbar');
+            let lastScroll = 0;
+            const scrollTopBtn = document.getElementById('scrollTop');
+
+            window.addEventListener('scroll', () => {
+              const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
+              if (navbar) {
+                if (currentScroll <= 0) {
+                  navbar.style.transform = 'translateY(0)';
+                } else if (currentScroll > lastScroll) {
+                  navbar.style.transform = 'translateY(-100%)';
+                } else {
+                  navbar.style.transform = 'translateY(0)';
+                }
+              }
+
+              lastScroll = currentScroll;
+
+              if (scrollTopBtn) {
+                if (currentScroll > 500) {
+                  scrollTopBtn.classList.remove('opacity-0', 'pointer-events-none');
+                  scrollTopBtn.classList.add('opacity-100');
+                } else {
+                  scrollTopBtn.classList.add('opacity-0', 'pointer-events-none');
+                  scrollTopBtn.classList.remove('opacity-100');
+                }
+              }
+            }, { passive: true });
+
+            // IntersectionObserver pour reveal
+            const observerOptions = { threshold: 0.1, rootMargin: '0px 0px -100px 0px' };
+            const revealObserver = new IntersectionObserver((entries) => {
+              entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                  entry.target.style.opacity = '1';
+                  entry.target.style.transform = 'translateY(0)';
+                  revealObserver.unobserve(entry.target);
+                }
+              });
+            }, observerOptions);
+
+            document.querySelectorAll('section').forEach(section => {
+              section.style.opacity = '0';
+              section.style.transform = 'translateY(50px)';
+              section.style.transition = 'opacity 0.8s ease-out, transform 0.8s ease-out';
+              revealObserver.observe(section);
+            });
+
+            // Observer les cartes de projets (supporte .neon-hover et .card-3d)
+            const projectCards = Array.from(document.querySelectorAll('.neon-hover')).concat(Array.from(document.querySelectorAll('.card-3d')));
+            projectCards.forEach((card, index) => {
+              card.style.opacity = '0';
+              card.style.transform = 'translateY(30px)';
+              card.style.transition = `opacity 0.6s ease-out ${index * 0.08}s, transform 0.6s ease-out ${index * 0.08}s`;
+              revealObserver.observe(card);
+            });
+
+            // Parallax mousemove (optional, checks for .parallax)
+            if (window.matchMedia('(pointer: fine)').matches) {
+              document.addEventListener('mousemove', (e) => {
+                const pageX = e.pageX;
+                const pageY = e.pageY;
+                document.querySelectorAll('.parallax').forEach(el => {
+                  const speed = parseFloat(el.dataset.speed) || 2;
+                  const x = (window.innerWidth - pageX * speed) / 100;
+                  const y = (window.innerHeight - pageY * speed) / 100;
+                  el.style.transform = `translateX(${x}px) translateY(${y}px)`;
+                });
+              });
+            }
+
+            // Particles creator (lightweight)
+            function createParticle() {
+              const particle = document.createElement('div');
+              particle.className = 'particle';
+              particle.style.left = Math.random() * 100 + '%';
+              particle.style.top = Math.random() * 100 + '%';
+              particle.style.animationDelay = Math.random() * 10 + 's';
+              document.body.appendChild(particle);
+              setTimeout(() => particle.remove(), 10000);
+            }
+            // limit particle creation when not visible
+            let particleInterval = null;
+            if (document.visibilityState === 'visible') {
+              particleInterval = setInterval(createParticle, 3000);
+            }
+            document.addEventListener('visibilitychange', () => {
+              if (document.visibilityState === 'visible' && !particleInterval) particleInterval = setInterval(createParticle, 3000);
+              if (document.visibilityState !== 'visible' && particleInterval) { clearInterval(particleInterval); particleInterval = null; }
+            });
+
+            // Typing effect — only if h1 has no child elements
+            const title = document.querySelector('h1');
+            if (title && title.childElementCount === 0) {
+              const text = title.textContent || '';
+              title.textContent = '';
+              let i = 0;
+              function typeWriter() {
+                if (i < text.length) {
+                  title.textContent += text.charAt(i);
+                  i++; setTimeout(typeWriter, 50);
+                }
+              }
+              setTimeout(() => { title.style.opacity = '1'; typeWriter(); }, 500);
+            }
+
+            // Counters animation (safely target elements containing a number + '+')
+            const animateCounter = (el, target) => {
+              let current = 0;
+              const increment = Math.max(1, Math.floor(target / 100));
+              const timer = setInterval(() => {
+                current += increment;
+                if (current >= target) { el.textContent = target + '+'; clearInterval(timer); }
+                else el.textContent = Math.floor(current) + '+';
+              }, 20);
+            };
+
+            const statsObserver = new IntersectionObserver((entries) => {
+              entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                  const stat = entry.target;
+                  const value = parseInt(stat.textContent.replace(/\D/g, '')) || 0;
+                  if (value > 0) animateCounter(stat, value);
+                  statsObserver.unobserve(stat);
+                }
+              });
+            }, { threshold: 0.5 });
+
+            document.querySelectorAll('.text-gradient').forEach(stat => {
+              if (/[0-9]+\+/.test(stat.textContent)) statsObserver.observe(stat);
+            });
+
+            // Update scroll percent CSS var
+            window.addEventListener('scroll', () => {
+              const scrollPercent = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
+              document.body.style.setProperty('--scroll-percent', scrollPercent);
+            }, { passive: true });
+
+            // On load class
+            window.addEventListener('load', () => document.body.classList.add('loaded'));
+
+            // Console easter egg
+            console.log('%c🚀 Développé par Auriole Dion', 'color: #26C6AA; font-size: 18px; font-weight: bold;');
+
+            /* --- Carousel & Lightbox (copied/adapted from existing logic) --- */
+            const slides = document.querySelectorAll('.carousel-slide');
+            const prevButton = document.querySelector('.carousel-prev');
+            const nextButton = document.querySelector('.carousel-next');
+            const indicators = document.querySelectorAll('.carousel-indicator');
+
+            if (slides && slides.length) {
+              let currentIndex = 0;
+              const slideCount = slides.length;
+
+              const styleEl = document.createElement('style');
+              styleEl.textContent = '.perspective-1000{perspective:1000px}.transform-style-3d{transform-style:preserve-3d}';
+              document.head.appendChild(styleEl);
+
+              function updateCarousel() {
+                slides.forEach((slide, index) => {
+                  const offset = ((index - currentIndex) + slideCount) % slideCount;
+                  slide.style.filter = 'none';
+                  slide.classList.remove('glass');
+                  if (offset === 0) {
+                    slide.style.transform = 'translateX(0) rotateY(0deg) translateZ(160px)';
+                    slide.style.opacity = '1'; slide.style.zIndex = '10';
+                  } else if (offset === 1) {
+                    slide.style.transform = 'translateX(70%) rotateY(-25deg) translateZ(0)';
+                    slide.style.opacity = '0.85'; slide.style.filter = 'blur(4px) brightness(0.95)'; slide.style.zIndex = '5'; slide.classList.add('glass');
+                  } else if (offset === slideCount - 1) {
+                    slide.style.transform = 'translateX(-70%) rotateY(25deg) translateZ(0)';
+                    slide.style.opacity = '0.85'; slide.style.filter = 'blur(4px) brightness(0.95)'; slide.style.zIndex = '5'; slide.classList.add('glass');
+                  } else if (offset > 1 && offset < slideCount - 1) {
+                    slide.style.transform = 'translateX(120%) rotateY(-35deg) translateZ(-120px)';
+                    slide.style.opacity = '0.5'; slide.style.filter = 'blur(6px)'; slide.style.zIndex = '1'; slide.classList.add('glass');
+                  } else {
+                    slide.style.transform = 'translateX(-120%) rotateY(35deg) translateZ(-120px)';
+                    slide.style.opacity = '0.5'; slide.style.filter = 'blur(6px)'; slide.style.zIndex = '1'; slide.classList.add('glass');
+                  }
+                });
+                indicators && indicators.forEach((ind, i) => {
+                  ind.classList.toggle('bg-neon-green', i === currentIndex);
+                  ind.classList.toggle('bg-white/30', i !== currentIndex);
+                });
+              }
+
+              prevButton && prevButton.addEventListener('click', () => { currentIndex = (currentIndex - 1 + slideCount) % slideCount; updateCarousel(); });
+              nextButton && nextButton.addEventListener('click', () => { currentIndex = (currentIndex + 1) % slideCount; updateCarousel(); });
+              indicators && indicators.forEach((ind, i) => ind.addEventListener('click', () => { currentIndex = i; updateCarousel(); }));
+
+              // Lightbox
+              const lightbox = document.createElement('div');
+              lightbox.id = 'lightbox';
+              lightbox.className = 'fixed inset-0 bg-black/90 z-50 hidden flex items-center justify-center';
+              lightbox.innerHTML = '<img class="max-w-[90vw] max-h-[90vh] rounded-xl shadow-2xl" />';
+              document.body.appendChild(lightbox);
+              const lightboxImg = lightbox.querySelector('img');
+              slides.forEach(slide => {
+                const img = slide.querySelector('img');
+                if (!img) return;
+                img.addEventListener('click', () => { lightboxImg.src = img.src; lightbox.classList.remove('hidden'); });
+              });
+              lightbox.addEventListener('click', () => lightbox.classList.add('hidden'));
+
+              updateCarousel();
+            }
+
+            // Testimonial modal handling (if present)
+            (function(){
+              const openBtn = document.getElementById('testimonial-open');
+              const modal = document.getElementById('testimonial-modal');
+              const closeBtn = document.getElementById('testimonial-close');
+              const cancelBtn = document.getElementById('testimonial-cancel');
+              const backdrop = modal ? modal.querySelector('[data-modal-backdrop]') : null;
+              const form = document.getElementById('testimonial-form');
+              const thanks = document.getElementById('testimonial-thanks');
+              let lastFocused = null;
+              if (!openBtn || !modal) return;
+              function showModal() { lastFocused = document.activeElement; modal.classList.remove('hidden'); modal.setAttribute('aria-hidden','false'); openBtn.setAttribute('aria-expanded','true'); const first = modal.querySelector('input, textarea, button, select'); if (first) first.focus(); document.addEventListener('keydown', trapKey); }
+              function hideModal() { modal.classList.add('hidden'); modal.setAttribute('aria-hidden','true'); openBtn.setAttribute('aria-expanded','false'); if (lastFocused) lastFocused.focus(); document.removeEventListener('keydown', trapKey); }
+              function trapKey(e) { if (e.key === 'Escape') hideModal(); if (e.key === 'Tab') { const focusable = modal.querySelectorAll('a[href], button:not([disabled]), input, textarea, select'); if (!focusable.length) return; const first = focusable[0]; const last = focusable[focusable.length -1]; if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); } else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); } } }
+              openBtn.addEventListener('click', showModal); closeBtn && closeBtn.addEventListener('click', hideModal); cancelBtn && cancelBtn.addEventListener('click', hideModal); backdrop && backdrop.addEventListener('click', hideModal);
+              if (form) form.addEventListener('submit', (e) => { e.preventDefault(); if (!form.checkValidity()) { form.reportValidity(); return; } if (thanks) thanks.classList.remove('hidden'); form.reset(); setTimeout(() => { if (thanks) thanks.classList.add('hidden'); hideModal(); }, 1400); });
+            })();
+
+          }); // DOMContentLoaded
+        })();
+      </script>
+</body>
+</html>

@@ -1,0 +1,1008 @@
+<!DOCTYPE html>
+<html lang="fr" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Auriole Dion – Portfolio Créatif & Développeur Full-Stack</title>
+
+  <!-- Tailwind -->
+  <link rel="stylesheet" href="src/output.css">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+  <!-- (Palette Tailwind injectée via build, script retiré côté client) -->
+
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Orbitron:wght@400;500;600;700;900&display=swap');
+
+    :root {
+      --bg: #fdfdfd;
+      --text: #2d3748;
+      --muted: #a0aec0;
+      --primary: #26C6AA;
+      --primary-200: #B9F0E4;
+      --primary-700: #1FA891;
+      --glass-bg: rgba(255, 255, 255, 0.6);
+      --glass-border: rgba(0, 0, 0, 0.08);
+    }
+
+    body {
+      font-family: 'Space Grotesk', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      overflow-x: hidden;
+      width: 100%;
+      max-width: 100%;
+    }
+
+    .font-cyber {
+      font-family: 'Orbitron', sans-serif;
+    }
+
+    /* Glass clair */
+    .glass {
+      background: var(--glass-bg);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid var(--glass-border);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.05);
+    }
+
+    /* Gradient animé */
+    .animated-gradient {
+      background: linear-gradient(-45deg, var(--primary-200), var(--primary), var(--primary-700));
+      background-size: 400% 400%;
+      animation: gradient 12s ease infinite;
+    }
+
+    @keyframes gradient {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    /* Particules */
+    .particle {
+      position: absolute;
+      width: 4px;
+      height: 4px;
+      background: rgba(38, 198, 170, 0.3);
+      border-radius: 50%;
+      animation: float 10s infinite;
+      pointer-events: none;
+    }
+
+    /* Amélioration de la visibilité des icônes audio */
+    .play-pause-btn .play-icon,
+    .play-pause-btn .pause-icon {
+      color: white !important;
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.4), 0 0 8px rgba(0, 0, 0, 0.2);
+      filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+    }
+
+    .play-pause-btn:disabled .play-icon,
+    .play-pause-btn:disabled .pause-icon {
+      opacity: 0.5;
+    }
+
+    .play-pause-btn .error-icon {
+      color: #f59e0b !important;
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    }
+
+    /* animation icône burger */
+    .burger-open span:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+    }
+    .burger-open span:nth-child(2) {
+    opacity: 0;
+    }
+    .burger-open span:nth-child(3) {
+    transform: rotate(-45deg) translate(7px, -6px);
+    }
+  </style>
+    <style>
+        /* Styles spécifiques pour la section Musique */
+        .audio-player {
+            background: linear-gradient(180deg, rgba(250,250,250,0.9), rgba(245,247,250,0.95));
+            border: 1px solid rgba(34,197,94,0.06);
+            box-shadow: 0 12px 30px rgba(15,23,42,0.06);
+            color: #1f2937;
+        }
+
+        .audio-player .play-pause-btn {
+            border: none;
+            box-shadow: 0 8px 20px rgba(15,23,42,0.08);
+        }
+
+        .audio-player .time-display {
+            color: #374151;
+        }
+
+        .audio-player .progress-bar-container {
+            background: rgba(15,23,42,0.06);
+        }
+    </style>
+
+  <style>
+    /* Corrections responsive mobile strictes */
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      width: 100%;
+      overflow-x: hidden;
+    }
+
+    /* Conteneurs principaux */
+    section {
+      width: 100%;
+      overflow-x: hidden;
+    }
+
+    .max-w-7xl, .max-w-6xl, .max-w-4xl {
+      width: 100%;
+      padding-left: 1.5rem;
+      padding-right: 1.5rem;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    /* Breakpoints mobiles stricts */
+    @media (max-width: 768px) {
+      html, body {
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        overflow-x: hidden !important;
+      }
+
+      section {
+        width: 100% !important;
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+        overflow-x: hidden;
+      }
+
+      .max-w-7xl, .max-w-6xl, .max-w-4xl {
+        padding-left: 1rem !important;
+        padding-right: 1rem !important;
+        margin: 0 auto !important;
+        width: 100% !important;
+      }
+
+      .px-6, .px-8 {
+        padding-left: 1rem !important;
+        padding-right: 1rem !important;
+      }
+
+      .grid {
+        width: 100% !important;
+        gap: 1rem;
+      }
+
+      .card-3d {
+        width: 100% !important;
+      }
+
+      img {
+        max-width: 100%;
+        height: auto;
+      }
+
+      h1, h2, h3, h4, h5, h6 {
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+      }
+
+      nav {
+        width: 100%;
+        left: 0;
+        right: 0;
+      }
+
+      .audio-player {
+        width: 100% !important;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .max-w-7xl, .max-w-6xl, .max-w-4xl {
+        padding-left: 0.75rem !important;
+        padding-right: 0.75rem !important;
+      }
+
+      h1 {
+        font-size: 1.875rem !important;
+      }
+
+      h2 {
+        font-size: 1.5rem !important;
+      }
+    }
+  </style>
+
+<body class="text-dark-gray overflow-x-hidden">
+
+  <!-- Particules -->
+  <div class="fixed inset-0 pointer-events-none overflow-hidden">
+    <div class="particle" style="top: 10%; left: 20%; animation-delay: 0s;"></div>
+    <div class="particle" style="top: 30%; left: 70%; animation-delay: 2s;"></div>
+    <div class="particle" style="top: 60%; left: 40%; animation-delay: 4s;"></div>
+    <div class="particle" style="top: 80%; left: 10%; animation-delay: 1s;"></div>
+    <div class="particle" style="top: 50%; left: 90%; animation-delay: 3s;"></div>
+  </div>
+
+  <!-- Navbar -->
+  <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300">
+    <div class="max-w-7xl mx-auto px-6 lg:px-8">
+      <div class="glass rounded-full mt-6 px-8 py-4">
+        <div class="flex items-center justify-between">
+          <div class="text-2xl font-cyber font-bold text-electric-violet">
+            <span class="inline-block">
+              <span class="text-3xl font-bold text-blue-600">&lt;/&gt;</span>
+              Auriole Dev
+            </span>
+          </div>
+          <div class="hidden md:flex items-center space-x-8">
+            <a href="#home" class="text-sm font-medium hover:text-electric-violet transition-colors">Accueil</a>
+            <a href="#about" class="text-sm font-medium hover:text-electric-violet transition-colors">À propos</a>
+            <a href="#skills" class="text-sm font-medium hover:text-electric-violet transition-colors">Compétences</a>
+            <a href="#projects" class="text-sm font-medium hover:text-electric-violet transition-colors">Projets</a>
+            <a href="#gallery" class="text-sm font-medium hover:text-electric-violet transition-colors">Galerie</a>
+            <a href="#musique" class="text-sm font-medium hover:text-electric-violet transition-colors">Musique</a>
+            <a href="#contact" class="px-6 py-2.5 bg-electric-violet text-white rounded-full font-semibold text-sm hover:bg-opacity-90 transition">Contact</a>
+          </div>
+          <button id="burger" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="mobile-menu" title="Ouvrir le menu" class="md:hidden flex flex-col space-y-1 w-8 h-8 justify-center items-center transition-all duration-300">
+            <span class="w-full h-0.5 bg-dark-gray block transition-all"></span>
+            <span class="w-full h-0.5 bg-dark-gray block transition-all"></span>
+            <span class="w-full h-0.5 bg-dark-gray block transition-all"></span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Mobile menu (hidden by default) -->
+  <div id="mobile-menu" role="navigation" aria-label="Menu mobile" class="fixed inset-0 z-40 bg-white/95 transform translate-x-full transition-transform duration-300 md:hidden">
+    <div class="flex flex-col items-center justify-center h-full space-y-8 px-6">
+      <button id="mobile-close" aria-label="Fermer le menu" title="Fermer le menu" class="absolute top-6 right-6 p-3 rounded-full glass">
+        <span aria-hidden="true">✕</span>
+      </button>
+      <a href="#home" class="text-2xl font-bold" role="menuitem">Accueil</a>
+      <a href="#about" class="text-2xl font-bold" role="menuitem">À propos</a>
+      <a href="#skills" class="text-2xl font-bold" role="menuitem">Compétences</a>
+      <a href="#projects" class="text-2xl font-bold" role="menuitem">Projets</a>
+      <a href="#gallery" class="text-2xl font-bold" role="menuitem">Galerie</a>
+      <a href="#musique" class="text-2xl font-bold" role="menuitem">Musique</a>
+      <a href="#contact" class="px-8 py-3 bg-electric-violet text-white rounded-full font-semibold" role="menuitem">Contact</a>
+    </div>
+  </div>
+
+  <!-- Hero -->
+  <section id="home" class="relative min-h-screen flex items-center pt-40 pb-19 overflow-hidden px-4 md:px-8">
+    <div class="absolute inset-0 bg-gradient-to-br from-electric-violet/10 via-transparent to-sky-cyan/10"></div>
+
+    <div class="max-w-7xl mx-auto relative z-10 w-full">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12 items-center">
+        <div class="space-y-6 md:space-y-8">
+          <div class="inline-flex items-center space-x-4  glass px-6 py-3 rounded-full mt-8">
+            <span class="relative flex h-3 w-3">
+              <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-mint-green opacity-75"></span>
+              <span class="relative inline-flex rounded-full h-3 w-3 bg-mint-green"></span>
+            </span>
+            <span class="text-xs md:text-sm font-medium tracking-wide ">DISPONIBLE POUR DE NOUVEAUX PROJETS</span>
+          </div>
+
+          <h1 class="text-4xl md:text-5xl lg:text-7xl font-cyber font-black leading-tight mt-6">
+            <span class="block text-gradient bg-gradient-to-r from-electric-violet to-sky-cyan bg-clip-text text-transparent">DION KELLY JOVIEN AURIOLE</span>
+            <cite class="block text-xl md:text-2xl font-light text-dark-gray/80 mt-2">‘‘Coder avec passion, concevoir avec précision’’</cite>
+          </h1>
+
+          <p class="text-base md:text-lg lg:text-xl text-dark-gray/80 leading-relaxed max-w-xl">
+            Transforme vos idées en <span class="text-electric-violet font-semibold">expériences digitales immersives</span>. Développeur Full-Stack • Designer • Beat Maker.
+          </p>
+
+          <div class="flex flex-wrap gap-4 md:gap-5">
+            <a href="#projects" class="group px-8 md:px-10 py-4 md:py-5 bg-electric-violet text-white rounded-full font-bold text-sm md:text-base uppercase tracking-wider shadow-2xl hover:scale-105 transition-transform flex items-center space-x-3">
+              <span>Explorer</span>
+              <i class="fas fa-arrow-right group-hover:translate-x-2 transition-transform"></i>
+            </a>
+            <a href="#contact" class="px-8 md:px-10 py-4 md:py-5 glass rounded-full font-bold text-sm md:text-base uppercase tracking-wider hover:bg-white/10 transition-all border-2 border-sky-cyan/50 hover:border-sky-cyan">
+              Contact
+            </a>
+          </div>
+        </div>
+
+        <div class="relative flex justify-center lg:justify-end">
+          <div class="portrait-container relative w-full max-w-2xl">
+            <img src="auriole/auriole.png" alt="Portrait" class="w-full h-auto rounded-2xl object-contain" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- À propos -->
+  <section id="about" class="py-16 md:py-32 px-4 md:px-8">
+    <div class="max-w-6xl mx-auto">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-16 items-center">
+        <div class="relative group">
+          <div class="absolute -inset-1 bg-gradient-to-r from-electric-violet to-sky-cyan rounded-3xl blur-2xl opacity-50 group-hover:opacity-75 transition-opacity"></div>
+          <div class="relative aspect-square glass rounded-3xl overflow-hidden">
+            <video src="auriole/auriole.mp4" class="w-full h-full object-cover" autoplay muted loop></video>
+          </div>
+        </div>
+
+        <div class="space-y-6">
+          <span class="px-4 py-2 bg-mint-green/10 text-mint-green rounded-full text-sm font-bold border border-mint-green/30">À PROPOS</span>
+          <h2 class="text-3xl md:text-5xl lg:text-6xl font-cyber font-bold leading-tight">
+            Créateur d'<span class="text-gradient bg-gradient-to-r from-electric-violet to-sky-cyan bg-clip-text text-transparent">expériences</span> digitales
+          </h2>
+          <p class="text-base md:text-lg text-dark-gray/80 leading-relaxed">
+            Passionné par l'intersection entre <span class="text-coral-pink font-semibold">technologie</span> et <span class="text-mint-green font-semibold">créativité</span>, je conçois des solutions web qui allient performance technique et esthétique moderne.
+          </p>
+          <a href="templates/auriole.pdf" download class="inline-flex items-center gap-3 px-8 py-4 glass rounded-full hover:bg-white/10 border-2 border-coral-pink/50 hover:border-coral-pink transition-all">
+            <i class="fas fa-download"></i>
+            <span class="font-semibold">Télécharger mon CV</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Compétences -->
+<section id="skills" class="py-16 md:py-32 bg-soft-gray/50 px-4 md:px-8">
+    <div class="max-w-7xl mx-auto">
+        <div class="text-center mb-20">
+        <span class="px-4 py-2 bg-sky-cyan/10 text-sky-cyan rounded-full text-sm font-bold border border-sky-cyan/30 -mt-4 inline-block">TECHNOLOGIES</span>
+            <h2 class="text-3xl md:text-5xl lg:text-6xl font-cyber font-bold mt-4">Arsenal <span class="text-gradient bg-gradient-to-r from-electric-violet to-sky-cyan bg-clip-text text-transparent">Technique</span></h2>
+            <p class="text-xl text-dark-gray/70 max-w-2xl mx-auto mt-4">Des technologies de pointe pour créer des solutions modernes et performantes</p>
+        </div>
+
+        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
+            <div class="card-3d group glass rounded-2xl p-8 hover:border-electric-violet border-2 border-transparent transition-all">
+                <div class="text-center space-y-4">
+                    <img src="public/image/icons/html.png" class="w-20 h-20 mx-auto object-contain">
+                    <div class="font-bold text-lg">HTML5</div>
+                </div>
+            </div>
+            
+            <div class="card-3d group glass rounded-2xl p-8 hover:border-electric-violet border-2 border-transparent transition-all">
+                <div class="text-center space-y-4">
+                    <img src="public/image/icons/css.png" class="w-20 h-20 mx-auto object-contain">
+                    <div class="font-bold text-lg">CSS3</div>
+                </div>
+            </div>
+            
+            <div class="card-3d group glass rounded-2xl p-8 hover:border-electric-violet border-2 border-transparent transition-all">
+                <div class="text-center space-y-4">
+                    <img src="public/image/icons/javascript.png" class="w-20 h-20 mx-auto object-contain">
+                    <div class="font-bold text-lg">JavaScript</div>
+                </div>
+            </div>
+            
+            <div class="card-3d group glass rounded-2xl p-8 hover:border-electric-violet border-2 border-transparent transition-all">
+                <div class="text-center space-y-4">
+                    <img src="public/image/icons/php.png" class="w-20 h-20 mx-auto object-contain">
+                    <div class="font-bold text-lg">PHP</div>
+                </div>
+            </div>
+            
+            <div class="card-3d group glass rounded-2xl p-8 hover:border-electric-violet border-2 border-transparent transition-all">
+                <div class="text-center space-y-4">
+                    <img src="public/image/icons/react-js.png" class="w-20 h-20 mx-auto object-contain">
+                    <div class="font-bold text-lg">React</div>
+                </div>
+            </div>
+            
+            <div class="card-3d group glass rounded-2xl p-8 hover:border-electric-violet border-2 border-transparent transition-all">
+                <div class="text-center space-y-4">
+                    <img src="public/image/icons/ia.png" class="w-20 h-20 mx-auto object-contain">
+                    <div class="font-bold text-lg">Intelligence Artificielle</div>
+                </div>
+            </div>
+            
+            <div class="card-3d group glass rounded-2xl p-8 hover:border-electric-violet border-2 border-transparent transition-all">
+                <div class="text-center space-y-4">
+                    <img src="public/image/icons/mysql.png" class="w-20 h-20 mx-auto object-contain">
+                    <div class="font-bold text-lg">MySQL</div>
+                </div>
+            </div>
+            
+            <div class="card-3d group glass rounded-2xl p-8 hover:border-electric-violet border-2 border-transparent transition-all">
+                <div class="text-center space-y-4">
+                    <img src="public/image/icons/git.png" class="w-20 h-20 mx-auto object-contain">
+                    <div class="font-bold text-lg">Git</div>
+                </div>
+            </div>
+            
+            <div class="card-3d group glass rounded-2xl p-8 hover:border-electric-violet border-2 border-transparent transition-all">
+                <div class="text-center space-y-4">
+                    <img src="public/image//icons/tailwind-css.png" class="w-20 h-20 mx-auto object-contain">
+                    <div class="font-bold text-lg">TailwindCSS</div>
+                </div>
+            </div>
+            
+            <div class="card-3d group glass rounded-2xl p-8 hover:border-electric-violet border-2 border-transparent transition-all">
+                <div class="text-center space-y-4">
+                    <img src="public//image/icons/figma.png" class="w-20 h-20 mx-auto object-contain">
+                    <div class="font-bold text-lg">Figma</div>
+                </div>
+            </div>
+
+            <div class="card-3d group glass rounded-2xl p-8 hover:border-electric-violet border-2 border-transparent transition-all">
+                <div class="text-center space-y-4">
+                    <img src="public//image/icons/fl-studio.png" class="w-20 h-20 mx-auto object-contain">
+                    <div class="font-bold text-lg">Fl Studio</div>
+                </div>
+            </div>
+            <div class="card-3d group glass rounded-2xl p-8 hover:border-electric-violet border-2 border-transparent transition-all">
+                <div class="text-center space-y-4">
+                    <img src="public//image/icons/adobe-photoshop.png" class="w-20 h-20 mx-auto object-contain">
+                    <div class="font-bold text-lg">Adobe Photoshop</div>
+                </div>
+            </div>
+            <div class="card-3d group glass rounded-2xl p-8 hover:border-electric-violet border-2 border-transparent transition-all">
+                <div class="text-center space-y-4">
+                    <img src="public//image/icons/adobe-illustrator.png" class="w-20 h-20 mx-auto object-contain">
+                    <div class="font-bold text-lg">Adobe Illustrator</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+    <!-- projects -->
+  <section id="portfolio" class="py-16 md:py-32 bg-off-white px-4 md:px-8">
+    <div class="max-w-7xl mx-auto">
+        <div class="text-center mb-20">
+            <span class="px-4 py-2 bg-electric-violet/10 text-electric-violet rounded-full text-sm font-bold border border-electric-violet/30">PORTFOLIO</span>
+            <h2 class="text-3xl md:text-5xl lg:text-6xl font-cyber font-bold mt-4">Mes <span class="text-gradient bg-gradient-to-r from-sky-cyan to-electric-violet bg-clip-text text-transparent">Réalisations</span></h2>
+            <p class="text-base md:text-lg lg:text-xl text-dark-gray/70 max-w-2xl mx-auto mt-4">Une sélection de mes travaux récents, alliant design et performance technique.</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-10">
+            <div class="card-3d group rounded-2xl overflow-hidden shadow-xl bg-white border border-soft-gray hover:shadow-2xl transition-all duration-300">
+                <div class="h-48 bg-gradient-to-br from-electric-violet to-sky-cyan flex items-center justify-center">
+                    <img class="ecommerce-carousel-img absolute w-full h-full object-cover transition-opacity duration-500" src="public/image/covers/lewegri-hotel.png" style="opacity: 0;">
+                    <img class="ecommerce-carousel-img absolute w-full h-full object-cover transition-opacity duration-500" src="public/image/covers/lewegri-hotel1.png" style="opacity: 0;">
+                    <img class="ecommerce-carousel-img absolute w-full h-full object-cover transition-opacity duration-500" src="public/image/covers/lewegri-hotel2.png" style="opacity: 0;">
+                </div>
+                <div class="p-6">
+                    <span class="text-xs font-bold uppercase text-sky-cyan bg-sky-cyan/10 px-3 py-1 rounded-full mb-3 inline-block">Web</span>
+                    <h3 class="text-2xl font-bold text-dark-gray mb-3">Lewegri-Hôtel</h3>
+                    <p class="text-medium-gray text-base mb-4 line-clamp-3">Site web redisigner pour un hôtel. </p>
+                    <div class="flex flex-wrap gap-2 mb-4">
+                        <span class="text-xs text-medium-gray bg-soft-gray px-2 py-0.5 rounded-lg border border-soft-gray">TypeScript</span>
+                        <span class="text-xs text-medium-gray bg-soft-gray px-2 py-0.5 rounded-lg border border-soft-gray">React</span>
+                        <span class="text-xs text-medium-gray bg-soft-gray px-2 py-0.5 rounded-lg border border-soft-gray">JavaScript</span>
+                        <span class="text-xs text-medium-gray bg-soft-gray px-2 py-0.5 rounded-lg border border-soft-gray">Tailwind</span>
+                    </div>
+                    <div class="flex space-x-4 mt-6">
+                        <a href="https://lewegri-hotel-mfim.vercel.app" target="_blank" class="flex items-center text-electric-violet font-semibold transition-colors hover:text-sky-cyan">
+                            <i class="fas fa-desktop mr-2 text-sm"></i>
+                            Voir la démo
+                        </a>
+                        <a href="https://github.com/DevCoder021" target="_blank" class="flex items-center text-dark-gray/70 font-semibold transition-colors hover:text-dark-gray">
+                            <i class="fab fa-github mr-2 text-sm"></i>
+                            Code source
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card-3d group rounded-2xl overflow-hidden shadow-xl bg-white border border-soft-gray hover:shadow-2xl transition-all duration-300">
+                <div class="h-48 bg-gradient-to-br from-mint-green to-electric-violet flex items-center justify-center relative overflow-hidden ecommerce-carousel">
+                    <img class="ecommerce-carousel-img absolute w-full h-full object-cover transition-opacity duration-500" src="public/image/covers/fruitshop.png" style="opacity: 1;">
+                    <img class="ecommerce-carousel-img absolute w-full h-full object-cover transition-opacity duration-500" src="public/image/covers/fruitshop1.png" style="opacity: 0;">
+                    <img class="ecommerce-carousel-img absolute w-full h-full object-cover transition-opacity duration-500" src="public/image/covers/fruitshop2.png" style="opacity: 0;">
+                    <img class="ecommerce-carousel-img absolute w-full h-full object-cover transition-opacity duration-500" src="public/image/covers/fruitshop3.png" style="opacity: 0;">
+                </div>
+                <div class="p-6">
+                    <span class="text-xs font-bold uppercase text-sky-cyan bg-sky-cyan/10 px-3 py-1 rounded-full mb-3 inline-block">E-Commerce</span>
+                    <h3 class="text-2xl font-bold text-dark-gray mb-3">FruitShop - Épicerie en ligne</h3>
+                    <p class="text-medium-gray text-base mb-4 line-clamp-3">Solution e-commerce complète pour une épicerie bio, incluant une interface client intuitive et un dashboard administrateur pour la gestion des stocks, le suivi des commandes et l'analyse des ventes en temps réel.</p>
+                    <div class="flex flex-wrap gap-2 mb-4">
+                        <span class="text-xs text-medium-gray bg-soft-gray px-2 py-0.5 rounded-lg border border-soft-gray">HTML5</span>
+                        <span class="text-xs text-medium-gray bg-soft-gray px-2 py-0.5 rounded-lg border border-soft-gray">TailwindCSS</span>
+                        <span class="text-xs text-medium-gray bg-soft-gray px-2 py-0.5 rounded-lg border border-soft-gray">JavaScript</span>
+                        <span class="text-xs text-medium-gray bg-soft-gray px-2 py-0.5 rounded-lg border border-soft-gray">PHP</span>
+                        <span class="text-xs text-medium-gray bg-soft-gray px-2 py-0.5 rounded-lg border border-soft-gray">MySQL</span>
+                    </div>
+                    <div class="flex space-x-4 mt-6">
+                        <a href="#" target="_blank" class="flex items-center text-electric-violet font-semibold transition-colors hover:text-sky-cyan">
+                            <i class="fas fa-desktop mr-2 text-sm"></i>
+                            Voir la démo
+                        </a>
+                        <a href="https://github.com/DevCoder021" target="_blank" class="flex items-center text-dark-gray/70 font-semibold transition-colors hover:text-dark-gray">
+                            <i class="fab fa-github mr-2 text-sm"></i>
+                            Code source
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card-3d group rounded-2xl overflow-hidden shadow-xl bg-white border border-soft-gray hover:shadow-2xl transition-all duration-300">
+                <div class="h-48 bg-gradient-to-br from-coral-pink to-sunset-orange flex items-center justify-center">
+                    <img src="public/image/covers/ubr.jpg" alt="ubr">
+                    <img src="public/image/covers/ubr1.png" alt="ubr">
+                    <img src="public/image/covers/ubr2.png" alt="ubr">
+                </div>
+                <div class="p-6">
+                    <span class="text-xs font-bold uppercase text-sky-cyan bg-sky-cyan/10 px-3 py-1 rounded-full mb-3 inline-block">Réseau social</span>
+                    <h3 class="text-2xl font-bold text-dark-gray mb-3">UBR</h3>
+                    <p class="text-medium-gray text-base mb-4 line-clamp-3">Application web de rencontre pour les chrétiens avec interfaces intuitives et un design moderne.</p>
+                    <div class="flex flex-wrap gap-2 mb-4">
+                        <span class="text-xs text-medium-gray bg-soft-gray px-2 py-0.5 rounded-lg border border-soft-gray">HTML5</span>
+                        <span class="text-xs text-medium-gray bg-soft-gray px-2 py-0.5 rounded-lg border border-soft-gray">TailwindCSS</span>
+                        <span class="text-xs text-medium-gray bg-soft-gray px-2 py-0.5 rounded-lg border border-soft-gray">JavaScript</span>
+                    </div>
+                    <div class="flex space-x-4 mt-6">
+                        <a href="#" target="_blank" class="flex items-center text-electric-violet font-semibold transition-colors hover:text-sky-cyan">
+                            <i class="fas fa-desktop mr-2 text-sm"></i>
+                            Voir la démo
+                        </a>
+                        <a href="https://github.com/DevCoder021" target="_blank" class="flex items-center text-dark-gray/70 font-semibold transition-colors hover:text-dark-gray">
+                            <i class="fab fa-github mr-2 text-sm"></i>
+                            Code source
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="card-3d group rounded-2xl overflow-hidden shadow-xl bg-white border border-soft-gray hover:shadow-2xl transition-all duration-300">
+                <div class="h-48 bg-gradient-to-br from-coral-pink to-sunset-orange flex items-center justify-center">
+                    <img src="public/image/covers/homyz.png" alt="homyz">
+                    <img src="public/image/covers/homyz1.png" alt="homyz">
+                    <img src="public/image/covers/homyz2.png" alt="homyz">
+                </div>
+                <div class="p-6">
+                    <span class="text-xs font-bold uppercase text-sky-cyan bg-sky-cyan/10 px-3 py-1 rounded-full mb-3 inline-block">Web</span>
+                    <h3 class="text-2xl font-bold text-dark-gray mb-3">Homyz</h3>
+                    <p class="text-medium-gray text-base mb-4 line-clamp-3">Design de site web moderne et intuitif pour une expérience utilisateur optimale.</p>
+                    <div class="flex flex-wrap gap-2 mb-4">
+                        <span class="text-xs text-medium-gray bg-soft-gray px-2 py-0.5 rounded-lg border border-soft-gray">HTML5</span>
+                        <span class="text-xs text-medium-gray bg-soft-gray px-2 py-0.5 rounded-lg border border-soft-gray">TailwindCSS</span>
+                        <span class="text-xs text-medium-gray bg-soft-gray px-2 py-0.5 rounded-lg border border-soft-gray">JavaScript</span>
+                    </div>
+                    <div class="flex space-x-4 mt-6">
+                        <a href="#" target="_blank" class="flex items-center text-electric-violet font-semibold transition-colors hover:text-sky-cyan">
+                            <i class="fas fa-desktop mr-2 text-sm"></i>
+                            Voir la démo
+                        </a>
+                        <a href="https://github.com/DevCoder021" target="_blank" class="flex items-center text-dark-gray/70 font-semibold transition-colors hover:text-dark-gray">
+                            <i class="fab fa-github mr-2 text-sm"></i>
+                            Code source
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card-3d group rounded-2xl overflow-hidden shadow-xl bg-white border border-soft-gray hover:shadow-2xl transition-all duration-300">
+                <div class="h-48 bg-gradient-to-br from-coral-pink to-sunset-orange flex items-center justify-center">
+                    <img src="public/image/covers/nexsaph.png" alt="nexsaph">
+                    <img src="public/image/covers/nexsaph1.png" alt="nexsaph">
+                    <img src="public/image/covers/nexsaph2.png" alt="nexsaph">
+                </div>
+                <div class="p-6">
+                    <span class="text-xs font-bold uppercase text-sky-cyan bg-sky-cyan/10 px-3 py-1 rounded-full mb-3 inline-block">Saas</span>
+                    <h3 class="text-2xl font-bold text-dark-gray mb-3">NexSaph</h3>
+                    <p class="text-medium-gray text-base mb-4 line-clamp-3">Plateforme SaaS de création d’application web avec l’IA.</p>
+                    <div class="flex flex-wrap gap-2 mb-4">
+                        <span class="text-xs text-medium-gray bg-soft-gray px-2 py-0.5 rounded-lg border border-soft-gray">HTML5</span>
+                        <span class="text-xs text-medium-gray bg-soft-gray px-2 py-0.5 rounded-lg border border-soft-gray">TailwindCSS</span>
+                        <span class="text-xs text-medium-gray bg-soft-gray px-2 py-0.5 rounded-lg border border-soft-gray">JavaScript</span>
+                    </div>
+                    <div class="flex space-x-4 mt-6">
+                        <a href="#" target="_blank" class="flex items-center text-electric-violet font-semibold transition-colors hover:text-sky-cyan">
+                            <i class="fas fa-desktop mr-2 text-sm"></i>
+                            Voir la démo
+                        </a>
+                        <a href="https://github.com/DevCoder021" target="_blank" class="flex items-center text-dark-gray/70 font-semibold transition-colors hover:text-dark-gray">
+                            <i class="fab fa-github mr-2 text-sm"></i>
+                            Code source
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+  <!-- Galerie -->
+  <section id="gallery" class="py-16 md:py-20 bg-transparent px-4 md:px-8">
+    <div class="max-w-7xl mx-auto">
+        <div class="text-center mb-20">
+        <span class="px-4 py-2 bg-coral-pink/10 text-coral-pink rounded-full text-sm font-bold border border-coral-pink/30 -mt-4 inline-block">GALLERIE</span>
+            <h2 class="text-4xl md:text-5xl lg:text-6xl font-cyber font-bold mb-6">Gallerie de <span class="text-gradient bg-gradient-to-r from-electric-violet to-sky-cyan bg-clip-text text-transparent">Créations Graphiques</span></h2>
+            <p class="text-lg md:text-xl text-dark-gray/70 max-w-2xl mx-auto">Des réalisations marquantes et variées</p>
+        </div>
+
+        <div class="carousel-wrapper" style="position: relative; width: 100%; height: 600px; display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.05) 100%); border-radius: 20px; overflow: hidden;">
+            
+            <!-- Flèches de navigation -->
+            <button class="carousel-btn carousel-btn-prev" style="position: absolute; left: 20px; top: 50%; transform: translateY(-50%); z-index: 50; width: 50px; height: 50px; border-radius: 50%; background: rgba(77, 82, 238, 0.8); color: white; border: none; font-size: 20px; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.3s;">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+
+            <!-- Conteneur 3D des images -->
+            <div class="carousel-container" style="position: relative; width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; perspective: 1500px;">
+                <img class="carousel-slide" src="public/gallery/burger.png" alt="Affiche" style="position: absolute; max-width: 80%; max-height: 85%; object-fit: contain; transition: transform 0.6s cubic-bezier(0.4, 0.0, 0.2, 1), opacity 0.6s;">
+                <img class="carousel-slide" src="public/gallery/logo-bougie(A).jpg" alt="Bannière" style="position: absolute; max-width: 80%; max-height: 85%; object-fit: contain; transition: transform 0.6s cubic-bezier(0.4, 0.0, 0.2, 1), opacity 0.6s;">
+                <img class="carousel-slide" src="public/gallery/logo-creative-flow.png" alt="E-Commerce" style="position: absolute; max-width: 80%; max-height: 85%; object-fit: contain; transition: transform 0.6s cubic-bezier(0.4, 0.0, 0.2, 1), opacity 0.6s;">
+                <img class="carousel-slide" src="public/gallery/logo1.png" alt="Illustration" style="position: absolute; max-width: 80%; max-height: 85%; object-fit: contain; transition: transform 0.6s cubic-bezier(0.4, 0.0, 0.2, 1), opacity 0.6s;">
+                <img class="carousel-slide" src="public/gallery/logo2.png" alt="Logo" style="position: absolute; max-width: 80%; max-height: 85%; object-fit: contain; transition: transform 0.6s cubic-bezier(0.4, 0.0, 0.2, 1), opacity 0.6s;">
+                <img class="carousel-slide" src="public/gallery/tech.png" alt="Page Garde" style="position: absolute; max-width: 80%; max-height: 85%; object-fit: contain; transition: transform 0.6s cubic-bezier(0.4, 0.0, 0.2, 1), opacity 0.6s;">
+                <img class="carousel-slide" src="public/gallery/UI1.png" alt="UI App" style="position: absolute; max-width: 80%; max-height: 85%; object-fit: contain; transition: transform 0.6s cubic-bezier(0.4, 0.0, 0.2, 1), opacity 0.6s;">
+                <img class="carousel-slide" src="public/gallery/UI2.png" alt="UI App" style="position: absolute; max-width: 80%; max-height: 85%; object-fit: contain; transition: transform 0.6s cubic-bezier(0.4, 0.0, 0.2, 1), opacity 0.6s;">
+                <img class="carousel-slide" src="public/gallery/UI3.png" alt="UI App" style="position: absolute; max-width: 80%; max-height: 85%; object-fit: contain; transition: transform 0.6s cubic-bezier(0.4, 0.0, 0.2, 1), opacity 0.6s;">
+            </div>
+
+            <!-- Flèche droite -->
+            <button class="carousel-btn carousel-btn-next" style="position: absolute; right: 20px; top: 50%; transform: translateY(-50%); z-index: 50; width: 50px; height: 50px; border-radius: 50%; background: rgba(77, 82, 238, 0.8); color: white; border: none; font-size: 20px; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.3s;">
+                <i class="fas fa-chevron-right"></i>
+            </button>
+        </div>
+
+        <!-- Indicateurs -->
+        <div class="carousel-dots" style="display: flex; justify-content: center; gap: 12px; margin-top: 30px;">
+            <dot data-index="0" style="width: 12px; height: 12px; border-radius: 50%; background: #4d52ee; cursor: pointer; transition: all 0.3s;"></dot>
+            <dot data-index="1" style="width: 12px; height: 12px; border-radius: 50%; background: rgba(77, 82, 238, 0.4); cursor: pointer; transition: all 0.3s;"></dot>
+            <dot data-index="2" style="width: 12px; height: 12px; border-radius: 50%; background: rgba(77, 82, 238, 0.4); cursor: pointer; transition: all 0.3s;"></dot>
+            <dot data-index="3" style="width: 12px; height: 12px; border-radius: 50%; background: rgba(77, 82, 238, 0.4); cursor: pointer; transition: all 0.3s;"></dot>
+            <dot data-index="4" style="width: 12px; height: 12px; border-radius: 50%; background: rgba(77, 82, 238, 0.4); cursor: pointer; transition: all 0.3s;"></dot>
+            <dot data-index="5" style="width: 12px; height: 12px; border-radius: 50%; background: rgba(77, 82, 238, 0.4); cursor: pointer; transition: all 0.3s;"></dot>
+            <dot data-index="6" style="width: 12px; height: 12px; border-radius: 50%; background: rgba(77, 82, 238, 0.4); cursor: pointer; transition: all 0.3s;"></dot>
+        </div>
+    </div>
+</section>
+
+  <!-- Musique -->
+ <section id="music" class="py-16 md:py-20 bg-soft-gray px-4 md:px-8">
+    <div class="max-w-7xl mx-auto">
+        <div class="text-center mb-16">
+        <span class="px-4 py-2 bg-mint-green/10 text-mint-green rounded-full text-sm font-bold border border-mint-green/30 -mt-4 inline-block">MUSIQUE</span>
+            <h2 class="text-4xl md:text-5xl lg:text-6xl font-cyber font-bold mb-6 text-dark-gray">Mes <span class="text-gradient bg-gradient-to-r from-sunset-orange to-coral-pink bg-clip-text text-transparent">Compositions</span></h2>
+            <p class="text-lg md:text-xl text-medium-gray max-w-2xl mx-auto">Une sélection de mes créations réalisées en composition et arrangement.</p>
+        </div>  
+        
+        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            
+            <div class="audio-player glass rounded-2xl p-6 bg-red-600/80 dark:bg-slate-800/80 backdrop-blur-lg shadow-xl hover:shadow-2xl border border-gray-200 dark:border-slate-700 transition-all duration-300 group" data-track-id="beat1" data-accent-color="#10b981" data-src="public/music/beat_1.mp3">
+                <div class="flex items-start justify-between mb-5">
+                    <div class="flex-1 min-w-0">
+                        <h3 class="text-xl font-bold text-red-600 dark:text-red-500 mb-1 truncate">Beat 1</h3>
+                        <p class="text-dark-gray/60 dark:text-slate-400 text-sm truncate">Auriole Dion</p>
+                    </div>
+                    <span class="px-3 py-1 bg-mint-green/10 text-mint-green rounded-full text-xs font-semibold ml-2 flex-shrink-0">Hip-Hop</span>
+                </div>
+                
+                <div class="flex items-center gap-3">
+                    <button class="play-pause-btn w-14 h-14 rounded-xl bg-mint-green flex items-center justify-center shadow-lg hover:shadow-xl hover:scale-110 active:scale-95 transition-all duration-200 group/btn relative overflow-hidden border-2 border-white/20" aria-label="Lire Beat 1">
+                        <i class="fas fa-play play-icon text-lg" aria-hidden="true"></i>
+                        <i class="fas fa-pause pause-icon hidden text-lg" aria-hidden="true"></i>
+                    </button>
+                    
+                    <div class="flex-1 min-w-0">
+                        <div class="progress-bar-container h-2 bg-gray-200 dark:bg-slate-700 rounded-full cursor-pointer relative group/progress" role="slider" aria-label="Temps de lecture">
+                            <div class="progress-fill absolute top-0 left-0 h-full rounded-full transition-all duration-100 ease-linear" style="width: 0%; background: linear-gradient(90deg, #10b981, #10b981dd);"></div>
+                            <div class="progress-handle absolute top-1/2 -translate-y-1/2 w-4 h-4 rounded-full shadow-md transition-all duration-100 ease-linear opacity-0 group-hover/progress:opacity-100" style="left: 0%; background-color: #10b981; transform: translate(-50%, -50%);"></div>
+                        </div>
+                    </div>
+                    
+                    <span class="time-display text-sm text-dark-gray/70 dark:text-slate-400 w-14 text-right font-mono tabular-nums" data-duration="0:00">0:00</span>
+                </div>
+                
+                <audio class="audio-element hidden" preload="metadata" src="public/music/beat_1.mp3"></audio>
+            </div>
+
+            <div class="audio-player glass rounded-2xl p-6 bg-red-600/80 dark:bg-slate-800/80 backdrop-blur-lg shadow-xl hover:shadow-2xl border border-gray-200 dark:border-slate-700 transition-all duration-300 group" data-track-id="beat2" data-accent-color="#f43f5e" data-src="public/music/beat_2.mp3">
+                <div class="flex items-start justify-between mb-5">
+                    <div class="flex-1 min-w-0">
+                        <h3 class="text-xl font-bold text-red-600 dark:text-red-500 mb-1 truncate">Beat 2</h3>
+                        <p class="text-dark-gray/60 dark:text-slate-400 text-sm truncate">Auriole Dion</p>
+                    </div>
+                    <span class="px-3 py-1 bg-coral-pink/10 text-coral-pink rounded-full text-xs font-semibold ml-2 flex-shrink-0">Trap</span>
+                </div>
+                
+                <div class="flex items-center gap-3">
+                    <button class="play-pause-btn w-14 h-14 rounded-xl bg-coral-pink flex items-center justify-center shadow-lg hover:shadow-xl hover:scale-110 active:scale-95 transition-all duration-200 group/btn relative overflow-hidden border-2 border-white/20" aria-label="Lire Beat 2">
+                        <i class="fas fa-play play-icon text-lg" aria-hidden="true"></i>
+                        <i class="fas fa-pause pause-icon hidden text-lg" aria-hidden="true"></i>
+                    </button>
+                    
+                    <div class="flex-1 min-w-0">
+                        <div class="progress-bar-container h-2 bg-gray-200 dark:bg-slate-700 rounded-full cursor-pointer relative group/progress" role="slider" aria-label="Temps de lecture">
+                            <div class="progress-fill absolute top-0 left-0 h-full rounded-full transition-all duration-100 ease-linear" style="width: 0%; background: linear-gradient(90deg, #f43f5e, #f43f5edd);"></div>
+                            <div class="progress-handle absolute top-1/2 -translate-y-1/2 w-4 h-4 rounded-full shadow-md transition-all duration-100 ease-linear opacity-0 group-hover/progress:opacity-100" style="left: 0%; background-color: #f43f5e; transform: translate(-50%, -50%);"></div>
+                        </div>
+                    </div>
+                    
+                    <span class="time-display text-sm text-dark-gray/70 dark:text-slate-400 w-14 text-right font-mono tabular-nums" data-duration="0:00">0:00</span>
+                </div>
+                
+                <audio class="audio-element hidden" preload="metadata" src="public/music/beat_2.mp3"></audio>
+            </div>
+
+            <div class="audio-player glass rounded-2xl p-6 bg-red-600/80 dark:bg-slate-800/80 backdrop-blur-lg shadow-xl hover:shadow-2xl border border-gray-200 dark:border-slate-700 transition-all duration-300 group" data-track-id="beat3" data-accent-color="#f97316" data-src="public/music/beat_3.mp3">
+                <div class="flex items-start justify-between mb-5">
+                    <div class="flex-1 min-w-0">
+                        <h3 class="text-xl font-bold text-red-600 dark:text-red-500 mb-1 truncate">Beat 3</h3>
+                        <p class="text-dark-gray/60 dark:text-slate-400 text-sm truncate">Auriole Dion</p>
+                    </div>
+                    <span class="px-3 py-1 bg-indigo-500/10 text-indigo-500 rounded-full text-xs font-semibold ml-2 flex-shrink-0">Lo-Fi</span>
+                </div>
+                
+                <div class="flex items-center gap-3">
+                    <button class="play-pause-btn w-14 h-14 rounded-xl bg-indigo-500 flex items-center justify-center shadow-lg hover:shadow-xl hover:scale-110 active:scale-95 transition-all duration-200 group/btn relative overflow-hidden border-2 border-white/20" aria-label="Lire Beat 3">
+                        <i class="fas fa-play play-icon text-lg" aria-hidden="true"></i>
+                        <i class="fas fa-pause pause-icon hidden text-lg" aria-hidden="true"></i>
+                    </button>
+                    
+                    <div class="flex-1 min-w-0">
+                        <div class="progress-bar-container h-2 bg-gray-200 dark:bg-slate-700 rounded-full cursor-pointer relative group/progress" role="slider" aria-label="Temps de lecture">
+                            <div class="progress-fill absolute top-0 left-0 h-full rounded-full transition-all duration-100 ease-linear" style="width: 0%; background: linear-gradient(90deg, #f97316, #f97316dd);"></div>
+                            <div class="progress-handle absolute top-1/2 -translate-y-1/2 w-4 h-4 rounded-full shadow-md transition-all duration-100 ease-linear opacity-0 group-hover/progress:opacity-100" style="left: 0%; background-color: #f97316; transform: translate(-50%, -50%);"></div>
+                        </div>
+                    </div>
+                    
+                    <span class="time-display text-sm text-dark-gray/70 dark:text-slate-400 w-14 text-right font-mono tabular-nums" data-duration="0:00">0:00</span>
+                </div>
+                
+                <audio class="audio-element hidden" preload="metadata" src="public/music/beat_3.mp3"></audio>
+            </div>
+
+            <div class="audio-player glass rounded-2xl p-6 bg-red-600/80 dark:bg-slate-800/80 backdrop-blur-lg shadow-xl hover:shadow-2xl border border-gray-200 dark:border-slate-700 transition-all duration-300 group" data-track-id="beat4" data-accent-color="#ec4899" data-src="public/music/beat_4.mp3">
+                <div class="flex items-start justify-between mb-5">
+                    <div class="flex-1 min-w-0">
+                        <h3 class="text-xl font-bold text-red-600 dark:text-red-500 mb-1 truncate">Beat 4</h3>
+                        <p class="text-dark-gray/60 dark:text-slate-400 text-sm truncate">Auriole Dion</p>
+                    </div>
+                    <span class="px-3 py-1 bg-pink-500/10 text-pink-500 rounded-full text-xs font-semibold ml-2 flex-shrink-0">R&B</span>
+                </div>
+                
+                <div class="flex items-center gap-3">
+                    <button class="play-pause-btn w-14 h-14 rounded-xl bg-pink-500 flex items-center justify-center shadow-lg hover:shadow-xl hover:scale-110 active:scale-95 transition-all duration-200 group/btn relative overflow-hidden border-2 border-white/20" aria-label="Lire Beat 4">
+                        <i class="fas fa-play play-icon text-lg" aria-hidden="true"></i>
+                        <i class="fas fa-pause pause-icon hidden text-lg" aria-hidden="true"></i>
+                    </button>
+                    
+                    <div class="flex-1 min-w-0">
+                        <div class="progress-bar-container h-2 bg-gray-200 dark:bg-slate-700 rounded-full cursor-pointer relative group/progress" role="slider" aria-label="Temps de lecture">
+                            <div class="progress-fill absolute top-0 left-0 h-full rounded-full transition-all duration-100 ease-linear" style="width: 0%; background: linear-gradient(90deg, #ec4899, #ec4899dd);"></div>
+                            <div class="progress-handle absolute top-1/2 -translate-y-1/2 w-4 h-4 rounded-full shadow-md transition-all duration-100 ease-linear opacity-0 group-hover/progress:opacity-100" style="left: 0%; background-color: #ec4899; transform: translate(-50%, -50%);"></div>
+                        </div>
+                    </div>
+                    
+                    <span class="time-display text-sm text-dark-gray/70 dark:text-slate-400 w-14 text-right font-mono tabular-nums" data-duration="0:00">0:00</span>
+                </div>
+                
+                <audio class="audio-element hidden" preload="metadata" src="public/music/beat_4.mp3"></audio>
+            </div>
+        </div>
+    </div>
+</section>
+
+  <!-- Contact -->
+  <section id="contact" class="py-16 md:py-32 bg-soft-gray/30 px-4 md:px-8">
+    <div class="text-center mb-12">
+    <span class="px-4 py-2 bg-electric-violet/10 text-electric-violet rounded-full text-sm font-bold border border-electric-violet/30 -mt-10">CONTACT</span>
+        <h2 class="text-3xl md:text-4xl lg:text-5xl font-cyber font-bold mt-4">Lançons votre <span class="text-gradient bg-gradient-to-r from-electric-violet to-sky-cyan bg-clip-text text-transparent">projet</span></h2>
+        <p class="text-lg md:text-xl text-dark-gray/70 max-w-2xl mx-auto mt-4">Discutons de vos idées et donnons vie à votre vision</p>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-12 max-w-6xl mx-auto">
+        <div class="glass rounded-3xl p-6 sm:p-8 md:p-10 card-hover">
+            <h3 class="text-2xl font-bold text-dark-gray mb-6">Envoyez-nous un message</h3>
+
+            <div id="success-feedback" class="hidden p-4 mb-6 rounded-lg bg-mint-green/20 text-mint-green border border-mint-green/50 font-semibold">
+                <i class="fas fa-check-circle mr-2"></i> <span id="success-text"></span>
+            </div>
+
+            <div id="error-feedback" class="hidden p-4 mb-6 rounded-lg bg-neon-red/20 text-neon-red border border-neon-red/50 font-semibold">
+                <i class="fas fa-exclamation-triangle mr-2"></i> Erreurs de validation :
+                <ul id="error-list" class="list-disc list-inside mt-1"></ul>
+            </div>
+
+            <form class="space-y-6" onsubmit="handleContactForm(event)">
+                <input type="hidden" name="access_key" value="7644b9ee-952d-4b70-a883-65e1139b41c5">
+                <div>
+                    <label for="name" class="block text-sm font-semibold text-dark-gray mb-2">
+                        <i class="fas fa-user text-mint-green mr-2"></i>Nom Complet
+                    </label>
+                    <input 
+                        type="text" 
+                        id="name"
+                        name="name"
+                        class="w-full px-4 py-3 border-2 border-mint-green/30 rounded-xl focus:outline-none focus:border-mint-green transition-all bg-white text-dark-gray"
+                        placeholder="Votre nom"
+                        required
+                    >
+                </div>
+
+                <div>
+                    <label for="email" class="block text-sm font-semibold text-dark-gray mb-2">
+                        <i class="fas fa-envelope text-mint-green mr-2"></i>Email
+                    </label>
+                    <input 
+                        type="email" 
+                        id="email"
+                        name="email"
+                        class="w-full px-4 py-3 border-2 border-mint-green/30 rounded-xl focus:outline-none focus:border-mint-green transition-all bg-white text-dark-gray"
+                        placeholder="votre@email.com"
+                        required
+                    >
+                </div>
+
+                <div>
+                    <label for="phone" class="block text-sm font-semibold text-dark-gray mb-2">
+                        <i class="fas fa-phone text-mint-green mr-2"></i>Téléphone
+                    </label>
+                    <input 
+                        type="tel" 
+                        id="phone"
+                        name="phone"
+                        value="" class="w-full px-4 py-3 border-2 border-mint-green/30 rounded-xl focus:outline-none focus:border-mint-green transition-all bg-white text-dark-gray"
+                        placeholder="+225 XX XX XX XX XX"
+                    >
+                </div>
+
+                <div>
+                    <label for="message" class="block text-sm font-semibold text-dark-gray mb-2">
+                        <i class="fas fa-message text-mint-green mr-2"></i>Message
+                    </label>
+                    <textarea 
+                        rows="4"
+                        id="message"
+                        name="message"
+                        class="w-full px-4 py-3 border-2 border-mint-green/30 rounded-xl focus:outline-none focus:border-mint-green transition-all bg-white text-dark-gray"
+                        placeholder="Votre message..."
+                        required
+                    ></textarea>
+                </div>
+
+                <button 
+                    type="submit" 
+                    class="w-full bg-mint-green text-white py-4 rounded-xl font-bold text-lg shadow-lg hover:shadow-2xl transform hover:scale-105 transition-all"
+                >
+                    <i class="fas fa-paper-plane mr-2"></i>
+                    Envoyer le Message
+                </button>
+            </form>
+        </div>
+
+        <div class="space-y-6">
+            <div class="glass rounded-2xl p-6 card-hover">
+                <div class="flex items-start">
+                    <div class="w-14 h-14 bg-mint-green rounded-full flex items-center justify-center mr-4 flex-shrink-0">
+                        <i class="fas fa-map-marker-alt text-2xl text-white"></i>
+                    </div>
+                    <div>
+                        <h4 class="text-xl font-bold text-dark-gray mb-2">Adresse</h4>
+                        <p class="text-dark-gray/70">Bouaké<br>Côte d'Ivoire</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="glass rounded-2xl p-6 card-hover">
+                <div class="flex items-start">
+                    <div class="w-14 h-14 bg-sky-cyan rounded-full flex items-center justify-center mr-4 flex-shrink-0">
+                        <i class="fas fa-phone text-2xl text-white"></i>
+                    </div>
+                    <div>
+                        <h4 class="text-xl font-bold text-dark-gray mb-2">Téléphone</h4>
+                        <p class="text-dark-gray/70">+225 07 05 59 51 86<br>+225 01 50 17 07 24</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="glass rounded-2xl p-6 card-hover">
+                <div class="flex items-start">
+                    <div class="w-14 h-14 bg-electric-violet rounded-full flex items-center justify-center mr-4 flex-shrink-0">
+                        <i class="fas fa-envelope text-2xl text-white"></i>
+                    </div>
+                    <div>
+                        <h4 class="text-xl font-bold text-dark-gray mb-2">Email</h4>
+                        <p class="text-dark-gray/70">aurioledev@gmail.com<br>jovienauriole@gmail.com</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="glass rounded-2xl p-6 card-hover">
+                <h4 class="text-xl font-bold text-dark-gray mb-4 text-center">Suivez-moi</h4>
+                <div class="flex justify-center space-x-4">
+                    <a href="https://wa.me/2250705595186" class="w-12 h-12 bg-mint-green rounded-full flex items-center justify-center hover:bg-mint-green/80 transition-all transform hover:scale-110">
+                        <i class="fab fa-whatsapp text-white text-xl"></i>
+                    </a>
+                    <a href="https://www.facebook.com/profile.php?id=61553416418279" class="w-12 h-12 bg-blue-700 rounded-full flex items-center justify-center hover:bg-blue-700/80 transition-all transform hover:scale-110">
+                        <i class="fab fa-facebook-f text-white text-xl"></i>
+                    </a>
+                    <a href="https://x.com/AurioleDion" class="w-12 h-12 bg-black rounded-full flex items-center justify-center hover:bg-black/80 transition-all transform hover:scale-110">
+                        <i class="fa-brands fa-x-twitter text-white text-xl"></i>
+                    </a>
+                    <a href="https://www.instagram.com/auriole.dev/" class="w-12 h-12 rounded-full flex items-center justify-center hover:opacity-90 transition-all transform hover:scale-110 bg-gradient-to-tr from-yellow-400 via-pink-500 to-purple-600">
+                        <i class="fab fa-instagram text-white text-xl"></i>
+                    </a>
+                    <a href="https://www.linkedin.com/in/kelly-jovien-auriole-dion-88b411379" class="w-12 h-12 bg-blue-700 rounded-full flex items-center justify-center hover:bg-blue-700/80 transition-all transform hover:scale-110">
+                        <i class="fab fa-linkedin-in text-white text-xl"></i>
+                    </a>
+                    <a href="https://github.com/DevCoder021" class="w-12 h-12 bg-black rounded-full flex items-center justify-center hover:bg-black/80 transition-all transform hover:scale-110">
+                        <i class="fab fa-github text-white text-xl"></i>
+                    </a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+  <!-- Footer Ultra Moderne -->
+    <footer class="py-16 border-t border-gray-700/10 relative overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-t from-neon-red/5 to-transparent"></div>
+        
+        <div class="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
+            <div class="grid md:grid-cols-3 gap-12 mb-12">
+                <!-- Colonne 1 -->
+                <div class="space-y-4">
+                    <div class="text-3xl font-cyber font-bold text-gradient bg-gradient-to-r from-electric-violet to-sky-cyan bg-clip-text text-transparent">AURIOLE DION</div>
+                    <p class="text-gray-400">
+                        Développeur Full-Stack • Designer • Producteur Musical
+                    </p>
+                </div>
+
+                <!-- Colonne 2 -->
+                <div class="space-y-4">
+                    <h3 class="text-lg font-bold text-neon-green">Navigation</h3>
+                    <div class="flex flex-col space-y-2">
+                        <a href="#home" class="text-gray-400 hover:text-electric-violet transition-colors">Accueil</a>
+                        <a href="#about" class="text-gray-400 hover:text-electric-violet transition-colors">À propos</a>
+                        <a href="#skills" class="text-gray-400 hover:text-electric-violet transition-colors">Compétences</a>
+                        <a href="#projects" class="text-gray-400 hover:text-electric-violet transition-colors">Projets</a>
+                        <a href="#contact" class="text-gray-400 hover:text-electric-violet transition-colors">Contact</a>
+                    </div>
+                </div>
+
+                <!-- Colonne 3 -->
+                <div class="space-y-4">
+                    <h3 class="text-lg font-bold text-cyber-blue">Contact</h3>
+                    <div class="flex flex-col space-y-2 text-gray-400">
+                        <a href="mailto:aurioledev@gmail.com" class="hover:text-electric-violet transition-colors flex items-center gap-2">
+                            <i class="fas fa-envelope"></i>
+                            aurioledev@gmail.com
+                        </a>
+                        <p class="flex items-center gap-2">
+                            <i class="fas fa-map-marker-alt"></i>
+                            Bouaké, Côte d'Ivoire
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Copyright -->
+            <div class="pt-8 border-t border-white/10 text-center">
+                <p class="text-gray-400">
+                    &copy; 2026 Auriole Dion. Tous droits réservés. Conçu avec 
+                    <span class="text-neon-red animate-pulse">❤</span> et 
+                    <span class="text-gradient font-semibold">passion</span>
+                </p>
+            </div>
+        </div>
+    </footer>
+
+  <!-- Scroll to top -->
+  <button id="scrollTop" type="button" title="Retour en haut" aria-label="Retour en haut" onclick="window.scrollTo({top: 0, behavior: 'smooth'})" class="fixed bottom-8 right-8 w-14 h-14 glass rounded-full flex items-center justify-center shadow-2xl hover:scale-110 transition-all z-50 opacity-0 pointer-events-none">
+    <i class="fas fa-arrow-up text-electric-violet text-xl transform-style-3d" aria-hidden="true"></i>
+    <span class="sr-only">Retour en haut</span>
+  </button>
+
+  <!-- JS -->
+<script src="public/js/main.js"></script>
+<script src="public/js/script.js"></script>
+<script src="public/js/audio.js"></script>
+<script src="public/js/contact-form.js"></script>
+
+</body>
+</html>
+

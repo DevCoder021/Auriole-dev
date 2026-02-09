@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tableau de bord - Auriole</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        body {
+            background: url('https://images.unsplash.com/photo-1579546929518-9e396f3cc809?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80') no-repeat center center;
+            background-size: cover;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        .glass {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+        }
+        .nav-item {
+            padding: 0.75rem 1rem;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        .nav-item:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+        .nav-item.active {
+            background: rgba(255, 255, 255, 0.3);
+            color: white;
+        }
+        .card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+            padding: 1.5rem;
+            border-radius: 1rem;
+        }
+    </style>
+</head>
+<body class="min-h-screen p-6">
+    <!-- Conteneur principal -->
+    <div class="max-w-7xl mx-auto bg-white rounded-xl shadow-lg overflow-hidden flex">
+        <!-- Sidebar -->
+        <aside class="w-64 bg-gray-900 text-white p-6 glass">
+            <div class="flex items-center mb-8">
+                <div class="w-10 h-10 bg-blue-500 rounded-full mr-3 flex items-center justify-center">
+                    <i class="fas fa-briefcase text-white"></i>
+                </div>
+                <h1 class="text-xl font-bold">Auriole Admin</h1>
+            </div>
+            <ul>
+                <li class="mb-2 nav-item active"><i class="fas fa-home mr-3"></i> Dashboard</li>
+                <li class="mb-2 nav-item"><i class="fas fa-project-diagram mr-3"></i> Projets</li>
+                <li class="mb-2 nav-item"><i class="fas fa-code mr-3"></i> Compétences</li>
+                <li class="mb-2 nav-item"><i class="fas fa-images mr-3"></i> Galerie</li>
+                <li class="mb-2 nav-item"><i class="fas fa-music mr-3"></i> Musique</li>
+                <li class="mb-2 nav-item"><i class="fas fa-comment mr-3"></i> Témoignages</li>
+                <li class="mb-2 nav-item"><i class="fas fa-envelope mr-3"></i> Messages</li>
+                <li class="mb-2 nav-item"><i class="fas fa-cog mr-3"></i> Paramètres</li>
+            </ul>
+        </aside>
+
+        <!-- Corps du dashboard -->
+        <main class="flex-1 p-6 glass">
+            <!-- En-tête -->
+            <header class="flex justify-between items-center mb-8">
+                <h2 class="text-2xl font-semibold">Tableau de bord</h2>
+                <div class="flex items-center space-x-4">
+                    <div class="bg-white text-blue-600 px-3 py-1 rounded-full text-sm font-medium">En ligne</div>
+                    <button class="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded text-sm">Déconnexion</button>
+                </div>
+            </header>
+
+            <!-- Section Dashboard -->
+            <section id="dashboard-content">
+                <!-- Statistiques -->
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+                    <div class="card">
+                        <h3 class="text-gray-300 text-sm uppercase mb-1">Projets</h3>
+                        <p class="text-2xl font-bold">1</p>
+                    </div>
+                    <div class="card">
+                        <h3 class="text-gray-300 text-sm uppercase mb-1">Messages Non Lus</h3>
+                        <p class="text-2xl font-bold">1</p>
+                    </div>
+                    <div class="card">
+                        <h3 class="text-gray-300 text-sm uppercase mb-1">Compétences</h3>
+                        <p class="text-2xl font-bold">6</p>
+                    </div>
+                    <div class="card">
+                        <h3 class="text-gray-300 text-sm uppercase mb-1">Visites Récentes</h3>
+                        <p class="text-2xl font-bold">0</p>
+                    </div>
+                </div>
+
+                <!-- Actions Rapides -->
+                <div class="card mb-8">
+                    <h3 class="text-lg font-semibold mb-4">Actions Rapides</h3>
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                        <button class="bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded text-sm">Nouveau Projet</button>
+                        <button class="bg-green-600 hover:bg-green-700 text-white py-2 px-4 rounded text-sm">Ajouter Compétence</button>
+                        <button class="bg-yellow-600 hover:bg-yellow-700 text-white py-2 px-4 rounded text-sm">Publier Galerie</button>
+                        <button class="bg-purple-600 hover:bg-purple-700 text-white py-2 px-4 rounded text-sm">Répondre Messages</button>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+</body>
+</html>
