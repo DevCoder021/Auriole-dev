@@ -9,6 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const isMissing = playerElement.dataset.missing === 'true';
         const playBtn = playerElement.querySelector('.play-pause-btn');
+        // On cible les icônes
         const playIcon = playerElement.querySelector('.play-icon');
         const pauseIcon = playerElement.querySelector('.pause-icon');
         const progressFill = playerElement.querySelector('.progress-fill');
@@ -16,21 +17,23 @@ document.addEventListener('DOMContentLoaded', () => {
         
         const audio = new Audio(audioSrc);
 
-        // --- Fonctions de mise à jour Visuelle (Dynamisme) ---
+        // --- Mise à jour précise des icônes ---
         const showPlayIcon = () => {
             if (playIcon) playIcon.classList.remove('hidden');
             if (pauseIcon) pauseIcon.classList.add('hidden');
-            // On retire l'effet "en lecture"
-            playerElement.classList.remove('is-playing');
-            playBtn.classList.remove('scale-95', 'bg-opacity-80');
+            
+            // État visuel du conteneur
+            playerElement.classList.remove('is-playing', 'ring-2', 'ring-mint-green');
+            playBtn.classList.remove('bg-opacity-80', 'scale-95');
         };
 
         const showPauseIcon = () => {
             if (playIcon) playIcon.classList.add('hidden');
             if (pauseIcon) pauseIcon.classList.remove('hidden');
-            // On ajoute les effets visuels (Scale et Shadow via CSS/Tailwind)
-            playerElement.classList.add('is-playing');
-            playBtn.classList.add('scale-95', 'bg-opacity-80');
+            
+            // État visuel actif (Dynamisme)
+            playerElement.classList.add('is-playing', 'ring-2', 'ring-mint-green');
+            playBtn.classList.add('bg-opacity-80', 'scale-95');
         };
 
         if (playBtn) {
@@ -39,7 +42,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (isMissing) return;
 
                 if (audio.paused) {
-                    // Arrêter les autres
+                    // Arrêter tous les autres sons proprement
                     players.forEach(p => {
                         if (p.audio !== audio) {
                             p.audio.pause();
@@ -47,7 +50,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         }
                     });
 
-                    audio.play().catch(err => console.error("Erreur lecture:", err));
+                    audio.play().catch(err => console.error("Erreur:", err));
                     showPauseIcon();
                 } else {
                     audio.pause();
@@ -56,20 +59,25 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         }
 
+        // Progression et temps
         audio.addEventListener('timeupdate', () => {
-            const percent = (audio.currentTime / audio.duration) * 100;
-            if (progressFill) progressFill.style.width = `${percent}%`;
-            
-            const mins = Math.floor(audio.currentTime / 60);
-            const secs = Math.floor(audio.currentTime % 60);
-            if (timeDisplay) timeDisplay.textContent = `${mins}:${secs.toString().padStart(2, '0')}`;
+            if (audio.duration) {
+                const percent = (audio.currentTime / audio.duration) * 100;
+                if (progressFill) progressFill.style.width = `${percent}%`;
+                
+                const mins = Math.floor(audio.currentTime / 60);
+                const secs = Math.floor(audio.currentTime % 60);
+                if (timeDisplay) timeDisplay.textContent = `${mins}:${secs.toString().padStart(2, '0')}`;
+            }
         });
 
+        // Reset auto à la fin
         audio.addEventListener('ended', () => {
             showPlayIcon();
             if (progressFill) progressFill.style.width = '0%';
         });
 
+        // Stockage pour la gestion globale
         players.push({ audio, showPlayIcon });
     });
 });
