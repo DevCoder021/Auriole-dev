@@ -5,7 +5,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
     document.querySelectorAll('.audio-player').forEach((playerElement, index) => {
         const trackId = playerElement.dataset.trackId || `track-${index}`;
-        const audioSrc = playerElement.dataset.src;
+        
+        // --- PARTIE CORRIGÉE : Nettoyage du chemin source ---
+        let audioSrc = playerElement.dataset.src;
+        if (audioSrc && audioSrc.startsWith('public/')) {
+            audioSrc = audioSrc.replace('public/', '/');
+        }
+        // ---------------------------------------------------
+
         const accentColor = playerElement.dataset.accentColor || '#7c3aed';
         const isMissing = playerElement.dataset.missing === 'true';
 
@@ -109,8 +116,8 @@ document.addEventListener('DOMContentLoaded', () => {
             
             if (duration > 0) {
                 const percent = (currentTime / duration) * 100;
-                progressFill.style.width = `${percent}%`;
-                progressHandle.style.left = `${percent}%`;
+                if (progressFill) progressFill.style.width = `${percent}%`;
+                if (progressHandle) progressHandle.style.left = `${percent}%`;
                 
                 // Mettre à jour le temps restant
                 const remaining = duration - currentTime;
@@ -240,11 +247,6 @@ document.addEventListener('DOMContentLoaded', () => {
     
     console.log(`[Audio] Initialized ${players.length} players`);
 
-    // --- Débloquer la lecture audio sur mobile :
-    // Certains navigateurs mobiles exigent un geste utilisateur global pour activer
-    // l'audio (AudioContext). On reprend simplement l'AudioContext et on marque
-    // l'audio comme débloqué. On évite de lancer la lecture automatique de tous
-    // les fichiers (cela provoquait plusieurs activations simultanées).
     function unlockAudioOnFirstGesture() {
         try {
             if (window.AudioContext || window.webkitAudioContext) {
@@ -255,17 +257,12 @@ document.addEventListener('DOMContentLoaded', () => {
             }
             window._audioUnlocked = true;
         } catch (e) {}
-        // On enlève l'écouteur pour éviter répétitions
         document.removeEventListener('pointerdown', unlockAudioOnFirstGesture);
     }
 
-    // Exposer la fonction globalement pour que l'overlay puisse l'appeler si nécessaire
     window.unlockAudioOnFirstGesture = unlockAudioOnFirstGesture;
-
-    // Attacher en capture pour capter le premier geste tactile/mouse
     document.addEventListener('pointerdown', unlockAudioOnFirstGesture, { once: true, capture: true });
 
-    // Pause tous les autres players sauf celui passé en argument
     function pauseAllExcept(activeAudio) {
         players.forEach(p => {
             try {

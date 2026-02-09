@@ -49,3 +49,4 @@ function handleContactForm(event) {
     }
 }
 
+window.handleContactForm = handleContactForm;
