@@ -13,8 +13,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const isMissing = playerElement.dataset.missing === 'true';
         const playBtn = playerElement.querySelector('.play-pause-btn');
-        const playIcon = playerElement.querySelector('.play-icon');
-        const pauseIcon = playerElement.querySelector('.pause-icon');
+        // Nouveau sélecteur pour l'icône unique
+        const icon = playBtn ? playBtn.querySelector('i') : null;
+        
         const progressFill = playerElement.querySelector('.progress-fill');
         const progressContainer = playerElement.querySelector('.progress-bar-container'); // Nouveau: conteneur pour clic
         const timeDisplay = playerElement.querySelector('.time-display');
@@ -27,8 +28,10 @@ document.addEventListener('DOMContentLoaded', () => {
         const updateUI = () => {
             if (audio.paused) {
                 // Mode STOPPED
-                if (playIcon) playIcon.classList.remove('hidden');
-                if (pauseIcon) pauseIcon.classList.add('hidden');
+                if (icon) {
+                    icon.classList.remove('fa-pause');
+                    icon.classList.add('fa-play');
+                }
                 
                 // Style inactif
                 playerElement.classList.remove('bg-white/10', 'border-white/20', 'shadow-lg');
@@ -38,8 +41,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 playBtn.classList.remove('scale-110');
             } else {
                 // Mode PLAYING
-                if (playIcon) playIcon.classList.add('hidden');
-                if (pauseIcon) pauseIcon.classList.remove('hidden');
+                if (icon) {
+                    icon.classList.remove('fa-play');
+                    icon.classList.add('fa-pause');
+                }
                 
                 // Style actif
                 playerElement.classList.add('bg-white/10', 'shadow-lg');
