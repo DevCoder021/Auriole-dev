@@ -21,15 +21,15 @@ document.addEventListener('DOMContentLoaded', () => {
         // --- GESTION DES ICÔNES ET DU STYLE ---
         const updateUI = () => {
             if (audio.paused) {
-                // Mode STOPPED / START (Icône Play visible)
-                if (playIcon) playIcon.classList.remove('hidden');
-                if (pauseIcon) pauseIcon.classList.add('hidden');
+                // Mode STOPPED (affiche l'icône pause pour inviter à jouer)
+                if (playIcon) playIcon.classList.add('hidden');
+                if (pauseIcon) pauseIcon.classList.remove('hidden');
                 playerElement.classList.remove('is-playing', 'ring-2', 'ring-mint-green');
                 playBtn.classList.remove('scale-90', 'bg-opacity-70');
             } else {
-                // Mode PLAYING / STOP (Icône Pause visible)
-                if (playIcon) playIcon.classList.add('hidden');
-                if (pauseIcon) pauseIcon.classList.remove('hidden');
+                // Mode PLAYING (affiche l'icône play pour inviter à arrêter)
+                if (playIcon) playIcon.classList.remove('hidden');
+                if (pauseIcon) pauseIcon.classList.add('hidden');
                 playerElement.classList.add('is-playing', 'ring-2', 'ring-mint-green');
                 playBtn.classList.add('scale-90', 'bg-opacity-70');
             }
