@@ -668,115 +668,140 @@
             <p class="text-lg md:text-xl text-medium-gray max-w-2xl mx-auto">Une sélection de mes créations réalisées en composition et arrangement.</p>
         </div>  
         
-        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div class="flex flex-col max-w-4xl mx-auto gap-4">
             
-            <div class="audio-player glass rounded-2xl p-6 bg-red-600/80 dark:bg-slate-800/80 backdrop-blur-lg shadow-xl hover:shadow-2xl border border-gray-200 dark:border-slate-700 transition-all duration-300 group" data-track-id="beat1" data-accent-color="#10b981" data-src="/music/beat_1.mp3">
-                <div class="flex items-start justify-between mb-5">
-                    <div class="flex-1 min-w-0">
-                        <h3 class="text-xl font-bold text-red-600 dark:text-red-500 mb-1 truncate">Beat 1</h3>
-                        <p class="text-dark-gray/60 dark:text-slate-400 text-sm truncate">Auriole Dion</p>
+            <!-- Beat 1 -->
+            <div class="audio-player glass rounded-xl p-3 md:p-4 hover:bg-white/50 dark:hover:bg-slate-800/50 transition-all duration-300 flex items-center gap-4 group border border-transparent hover:border-mint-green/20" data-track-id="beat1" data-accent-color="#10b981" data-src="/music/beat_1.mp3">
+                <button class="play-pause-btn w-12 h-12 rounded-full bg-mint-green flex-shrink-0 flex items-center justify-center shadow-lg hover:scale-110 active:scale-95 transition-all duration-200 text-white relative overflow-hidden" aria-label="Lire Beat 1">
+                    <i class="fas fa-play play-icon text-sm md:text-base"></i>
+                    <i class="fas fa-pause pause-icon hidden text-sm md:text-base"></i>
+                </button>
+
+                <div class="flex-1 min-w-0 grid grid-cols-1 md:grid-cols-[1fr,auto] gap-1 md:gap-4 items-center">
+                    <div class="min-w-0">
+                        <div class="flex items-center gap-2">
+                            <h3 class="text-base md:text-lg font-bold text-gray-800 dark:text-gray-100 truncate">Beat 1</h3>
+                            <span class="px-2 py-0.5 bg-mint-green/10 text-mint-green rounded-full text-[10px] font-bold uppercase tracking-wider">Hip-Hop</span>
+                        </div>
+                        <p class="text-xs md:text-sm text-gray-500 truncate">Auriole Dion</p>
                     </div>
-                    <span class="px-3 py-1 bg-mint-green/10 text-mint-green rounded-full text-xs font-semibold ml-2 flex-shrink-0">Hip-Hop</span>
-                </div>
-                
-                <div class="flex items-center gap-3">
-                    <button class="play-pause-btn w-14 h-14 rounded-xl bg-mint-green flex items-center justify-center shadow-lg hover:shadow-xl hover:scale-110 active:scale-95 transition-all duration-200 group/btn relative overflow-hidden border-2 border-white/20" aria-label="Lire Beat 1">
-                        <i class="fas fa-play play-icon text-lg" aria-hidden="true"></i>
-                        <i class="fas fa-pause pause-icon hidden text-lg" aria-hidden="true"></i>
-                    </button>
-                    
-                    <div class="flex-1 min-w-0">
-                        <div class="progress-bar-container h-2 bg-gray-200 dark:bg-slate-700 rounded-full cursor-pointer relative group/progress" role="slider" aria-label="Temps de lecture">
-                            <div class="progress-fill absolute top-0 left-0 h-full rounded-full transition-all duration-100 ease-linear" style="width: 0%; background: linear-gradient(90deg, #10b981, #10b981dd);"></div>
-                            <div class="progress-handle absolute top-1/2 -translate-y-1/2 w-4 h-4 rounded-full shadow-md transition-all duration-100 ease-linear opacity-0 group-hover/progress:opacity-100" style="left: 0%; background-color: #10b981; transform: translate(-50%, -50%);"></div>
+
+                    <div class="hidden md:flex items-center gap-3 w-full max-w-[200px]">
+                        <div class="progress-bar-container h-1.5 flex-1 bg-gray-200 dark:bg-slate-700 rounded-full cursor-pointer relative group/progress" role="slider">
+                            <div class="progress-fill absolute top-0 left-0 h-full rounded-full transition-all duration-100 ease-linear" style="width: 0%; background-color: #10b981;"></div>
+                            <div class="progress-handle absolute top-1/2 -translate-y-1/2 w-3 h-3 rounded-full shadow-md opacity-0 group-hover/progress:opacity-100 transition-opacity bg-white border border-gray-200" style="left: 0%;"></div>
                         </div>
                     </div>
-                    
-                    <span class="time-display text-sm text-dark-gray/70 dark:text-slate-400 w-14 text-right font-mono tabular-nums" data-duration="0:00">0:00</span>
+                </div>
+
+                <div class="flex flex-col items-end gap-1 min-w-[50px]">
+                    <span class="time-display text-xs md:text-sm text-gray-500 font-mono tabular-nums" data-duration="0:00">0:00</span>
+                    <!-- Mobile Progress (Visible only on small screens) -->
+                     <div class="md:hidden w-16 h-1 bg-gray-200 rounded-full overflow-hidden">
+                        <div class="progress-fill h-full bg-mint-green" style="width: 0%"></div>
+                     </div>
                 </div>
                 
                 <audio class="audio-element hidden" preload="metadata" src="/music/beat_1.mp3"></audio>
             </div>
 
-            <div class="audio-player glass rounded-2xl p-6 bg-red-600/80 dark:bg-slate-800/80 backdrop-blur-lg shadow-xl hover:shadow-2xl border border-gray-200 dark:border-slate-700 transition-all duration-300 group" data-track-id="beat2" data-accent-color="#f43f5e" data-src="public/music/beat_2.mp3">
-                <div class="flex items-start justify-between mb-5">
-                    <div class="flex-1 min-w-0">
-                        <h3 class="text-xl font-bold text-red-600 dark:text-red-500 mb-1 truncate">Beat 2</h3>
-                        <p class="text-dark-gray/60 dark:text-slate-400 text-sm truncate">Auriole Dion</p>
+            <!-- Beat 2 -->
+            <div class="audio-player glass rounded-xl p-3 md:p-4 hover:bg-white/50 dark:hover:bg-slate-800/50 transition-all duration-300 flex items-center gap-4 group border border-transparent hover:border-coral-pink/20" data-track-id="beat2" data-accent-color="#f43f5e" data-src="public/music/beat_2.mp3">
+                <button class="play-pause-btn w-12 h-12 rounded-full bg-coral-pink flex-shrink-0 flex items-center justify-center shadow-lg hover:scale-110 active:scale-95 transition-all duration-200 text-white relative overflow-hidden" aria-label="Lire Beat 2">
+                    <i class="fas fa-play play-icon text-sm md:text-base"></i>
+                    <i class="fas fa-pause pause-icon hidden text-sm md:text-base"></i>
+                </button>
+
+                <div class="flex-1 min-w-0 grid grid-cols-1 md:grid-cols-[1fr,auto] gap-1 md:gap-4 items-center">
+                    <div class="min-w-0">
+                         <div class="flex items-center gap-2">
+                            <h3 class="text-base md:text-lg font-bold text-gray-800 dark:text-gray-100 truncate">Beat 2</h3>
+                            <span class="px-2 py-0.5 bg-coral-pink/10 text-coral-pink rounded-full text-[10px] font-bold uppercase tracking-wider">Trap</span>
+                        </div>
+                        <p class="text-xs md:text-sm text-gray-500 truncate">Auriole Dion</p>
                     </div>
-                    <span class="px-3 py-1 bg-coral-pink/10 text-coral-pink rounded-full text-xs font-semibold ml-2 flex-shrink-0">Trap</span>
-                </div>
-                
-                <div class="flex items-center gap-3">
-                    <button class="play-pause-btn w-14 h-14 rounded-xl bg-coral-pink flex items-center justify-center shadow-lg hover:shadow-xl hover:scale-110 active:scale-95 transition-all duration-200 group/btn relative overflow-hidden border-2 border-white/20" aria-label="Lire Beat 2">
-                        <i class="fas fa-play play-icon text-lg" aria-hidden="true"></i>
-                        <i class="fas fa-pause pause-icon hidden text-lg" aria-hidden="true"></i>
-                    </button>
-                    
-                    <div class="flex-1 min-w-0">
-                        <div class="progress-bar-container h-2 bg-gray-200 dark:bg-slate-700 rounded-full cursor-pointer relative group/progress" role="slider" aria-label="Temps de lecture">
-                            <div class="progress-fill absolute top-0 left-0 h-full rounded-full transition-all duration-100 ease-linear" style="width: 0%; background: linear-gradient(90deg, #f43f5e, #f43f5edd);"></div>
-                            <div class="progress-handle absolute top-1/2 -translate-y-1/2 w-4 h-4 rounded-full shadow-md transition-all duration-100 ease-linear opacity-0 group-hover/progress:opacity-100" style="left: 0%; background-color: #f43f5e; transform: translate(-50%, -50%);"></div>
+
+                    <div class="hidden md:flex items-center gap-3 w-full max-w-[200px]">
+                        <div class="progress-bar-container h-1.5 flex-1 bg-gray-200 dark:bg-slate-700 rounded-full cursor-pointer relative group/progress" role="slider">
+                            <div class="progress-fill absolute top-0 left-0 h-full rounded-full transition-all duration-100 ease-linear" style="width: 0%; background-color: #f43f5e;"></div>
+                            <div class="progress-handle absolute top-1/2 -translate-y-1/2 w-3 h-3 rounded-full shadow-md opacity-0 group-hover/progress:opacity-100 transition-opacity bg-white border border-gray-200" style="left: 0%;"></div>
                         </div>
                     </div>
-                    
-                    <span class="time-display text-sm text-dark-gray/70 dark:text-slate-400 w-14 text-right font-mono tabular-nums" data-duration="0:00">0:00</span>
+                </div>
+
+                <div class="flex flex-col items-end gap-1 min-w-[50px]">
+                    <span class="time-display text-xs md:text-sm text-gray-500 font-mono tabular-nums" data-duration="0:00">0:00</span>
+                    <div class="md:hidden w-16 h-1 bg-gray-200 rounded-full overflow-hidden">
+                        <div class="progress-fill h-full bg-coral-pink" style="width: 0%"></div>
+                     </div>
                 </div>
                 
                 <audio class="audio-element hidden" preload="metadata" src="/music/beat_2.mp3"></audio>
             </div>
 
-            <div class="audio-player glass rounded-2xl p-6 bg-red-600/80 dark:bg-slate-800/80 backdrop-blur-lg shadow-xl hover:shadow-2xl border border-gray-200 dark:border-slate-700 transition-all duration-300 group" data-track-id="beat3" data-accent-color="#f97316" data-src="public/music/beat_3.mp3">
-                <div class="flex items-start justify-between mb-5">
-                    <div class="flex-1 min-w-0">
-                        <h3 class="text-xl font-bold text-red-600 dark:text-red-500 mb-1 truncate">Beat 3</h3>
-                        <p class="text-dark-gray/60 dark:text-slate-400 text-sm truncate">Auriole Dion</p>
+            <!-- Beat 3 -->
+            <div class="audio-player glass rounded-xl p-3 md:p-4 hover:bg-white/50 dark:hover:bg-slate-800/50 transition-all duration-300 flex items-center gap-4 group border border-transparent hover:border-indigo-500/20" data-track-id="beat3" data-accent-color="#f97316" data-src="public/music/beat_3.mp3">
+                <button class="play-pause-btn w-12 h-12 rounded-full bg-indigo-500 flex-shrink-0 flex items-center justify-center shadow-lg hover:scale-110 active:scale-95 transition-all duration-200 text-white relative overflow-hidden" aria-label="Lire Beat 3">
+                    <i class="fas fa-play play-icon text-sm md:text-base"></i>
+                    <i class="fas fa-pause pause-icon hidden text-sm md:text-base"></i>
+                </button>
+
+                <div class="flex-1 min-w-0 grid grid-cols-1 md:grid-cols-[1fr,auto] gap-1 md:gap-4 items-center">
+                    <div class="min-w-0">
+                         <div class="flex items-center gap-2">
+                            <h3 class="text-base md:text-lg font-bold text-gray-800 dark:text-gray-100 truncate">Beat 3</h3>
+                            <span class="px-2 py-0.5 bg-indigo-500/10 text-indigo-500 rounded-full text-[10px] font-bold uppercase tracking-wider">Lo-Fi</span>
+                        </div>
+                        <p class="text-xs md:text-sm text-gray-500 truncate">Auriole Dion</p>
                     </div>
-                    <span class="px-3 py-1 bg-indigo-500/10 text-indigo-500 rounded-full text-xs font-semibold ml-2 flex-shrink-0">Lo-Fi</span>
-                </div>
-                
-                <div class="flex items-center gap-3">
-                    <button class="play-pause-btn w-14 h-14 rounded-xl bg-indigo-500 flex items-center justify-center shadow-lg hover:shadow-xl hover:scale-110 active:scale-95 transition-all duration-200 group/btn relative overflow-hidden border-2 border-white/20" aria-label="Lire Beat 3">
-                        <i class="fas fa-play play-icon text-lg" aria-hidden="true"></i>
-                        <i class="fas fa-pause pause-icon hidden text-lg" aria-hidden="true"></i>
-                    </button>
-                    
-                    <div class="flex-1 min-w-0">
-                        <div class="progress-bar-container h-2 bg-gray-200 dark:bg-slate-700 rounded-full cursor-pointer relative group/progress" role="slider" aria-label="Temps de lecture">
-                            <div class="progress-fill absolute top-0 left-0 h-full rounded-full transition-all duration-100 ease-linear" style="width: 0%; background: linear-gradient(90deg, #f97316, #f97316dd);"></div>
-                            <div class="progress-handle absolute top-1/2 -translate-y-1/2 w-4 h-4 rounded-full shadow-md transition-all duration-100 ease-linear opacity-0 group-hover/progress:opacity-100" style="left: 0%; background-color: #f97316; transform: translate(-50%, -50%);"></div>
+
+                    <div class="hidden md:flex items-center gap-3 w-full max-w-[200px]">
+                        <div class="progress-bar-container h-1.5 flex-1 bg-gray-200 dark:bg-slate-700 rounded-full cursor-pointer relative group/progress" role="slider">
+                            <div class="progress-fill absolute top-0 left-0 h-full rounded-full transition-all duration-100 ease-linear" style="width: 0%; background-color: #f97316;"></div>
+                            <div class="progress-handle absolute top-1/2 -translate-y-1/2 w-3 h-3 rounded-full shadow-md opacity-0 group-hover/progress:opacity-100 transition-opacity bg-white border border-gray-200" style="left: 0%;"></div>
                         </div>
                     </div>
-                    
-                    <span class="time-display text-sm text-dark-gray/70 dark:text-slate-400 w-14 text-right font-mono tabular-nums" data-duration="0:00">0:00</span>
+                </div>
+
+                <div class="flex flex-col items-end gap-1 min-w-[50px]">
+                    <span class="time-display text-xs md:text-sm text-gray-500 font-mono tabular-nums" data-duration="0:00">0:00</span>
+                    <div class="md:hidden w-16 h-1 bg-gray-200 rounded-full overflow-hidden">
+                        <div class="progress-fill h-full bg-indigo-500" style="width: 0%"></div>
+                     </div>
                 </div>
                 
                 <audio class="audio-element hidden" preload="metadata" src="/music/beat_3.mp3"></audio>
             </div>
 
-            <div class="audio-player glass rounded-2xl p-6 bg-red-600/80 dark:bg-slate-800/80 backdrop-blur-lg shadow-xl hover:shadow-2xl border border-gray-200 dark:border-slate-700 transition-all duration-300 group" data-track-id="beat4" data-accent-color="#ec4899" data-src="public/music/beat_4.mp3">
-                <div class="flex items-start justify-between mb-5">
-                    <div class="flex-1 min-w-0">
-                        <h3 class="text-xl font-bold text-red-600 dark:text-red-500 mb-1 truncate">Beat 4</h3>
-                        <p class="text-dark-gray/60 dark:text-slate-400 text-sm truncate">Auriole Dion</p>
+            <!-- Beat 4 -->
+            <div class="audio-player glass rounded-xl p-3 md:p-4 hover:bg-white/50 dark:hover:bg-slate-800/50 transition-all duration-300 flex items-center gap-4 group border border-transparent hover:border-pink-500/20" data-track-id="beat4" data-accent-color="#ec4899" data-src="public/music/beat_4.mp3">
+                <button class="play-pause-btn w-12 h-12 rounded-full bg-pink-500 flex-shrink-0 flex items-center justify-center shadow-lg hover:scale-110 active:scale-95 transition-all duration-200 text-white relative overflow-hidden" aria-label="Lire Beat 4">
+                    <i class="fas fa-play play-icon text-sm md:text-base"></i>
+                    <i class="fas fa-pause pause-icon hidden text-sm md:text-base"></i>
+                </button>
+
+                <div class="flex-1 min-w-0 grid grid-cols-1 md:grid-cols-[1fr,auto] gap-1 md:gap-4 items-center">
+                    <div class="min-w-0">
+                         <div class="flex items-center gap-2">
+                            <h3 class="text-base md:text-lg font-bold text-gray-800 dark:text-gray-100 truncate">Beat 4</h3>
+                            <span class="px-2 py-0.5 bg-pink-500/10 text-pink-500 rounded-full text-[10px] font-bold uppercase tracking-wider">R&B</span>
+                        </div>
+                        <p class="text-xs md:text-sm text-gray-500 truncate">Auriole Dion</p>
                     </div>
-                    <span class="px-3 py-1 bg-pink-500/10 text-pink-500 rounded-full text-xs font-semibold ml-2 flex-shrink-0">R&B</span>
-                </div>
-                
-                <div class="flex items-center gap-3">
-                    <button class="play-pause-btn w-14 h-14 rounded-xl bg-pink-500 flex items-center justify-center shadow-lg hover:shadow-xl hover:scale-110 active:scale-95 transition-all duration-200 group/btn relative overflow-hidden border-2 border-white/20" aria-label="Lire Beat 4">
-                        <i class="fas fa-play play-icon text-lg" aria-hidden="true"></i>
-                        <i class="fas fa-pause pause-icon hidden text-lg" aria-hidden="true"></i>
-                    </button>
-                    
-                    <div class="flex-1 min-w-0">
-                        <div class="progress-bar-container h-2 bg-gray-200 dark:bg-slate-700 rounded-full cursor-pointer relative group/progress" role="slider" aria-label="Temps de lecture">
-                            <div class="progress-fill absolute top-0 left-0 h-full rounded-full transition-all duration-100 ease-linear" style="width: 0%; background: linear-gradient(90deg, #ec4899, #ec4899dd);"></div>
-                            <div class="progress-handle absolute top-1/2 -translate-y-1/2 w-4 h-4 rounded-full shadow-md transition-all duration-100 ease-linear opacity-0 group-hover/progress:opacity-100" style="left: 0%; background-color: #ec4899; transform: translate(-50%, -50%);"></div>
+
+                    <div class="hidden md:flex items-center gap-3 w-full max-w-[200px]">
+                        <div class="progress-bar-container h-1.5 flex-1 bg-gray-200 dark:bg-slate-700 rounded-full cursor-pointer relative group/progress" role="slider">
+                            <div class="progress-fill absolute top-0 left-0 h-full rounded-full transition-all duration-100 ease-linear" style="width: 0%; background-color: #ec4899;"></div>
+                            <div class="progress-handle absolute top-1/2 -translate-y-1/2 w-3 h-3 rounded-full shadow-md opacity-0 group-hover/progress:opacity-100 transition-opacity bg-white border border-gray-200" style="left: 0%;"></div>
                         </div>
                     </div>
-                    
-                    <span class="time-display text-sm text-dark-gray/70 dark:text-slate-400 w-14 text-right font-mono tabular-nums" data-duration="0:00">0:00</span>
+                </div>
+
+                <div class="flex flex-col items-end gap-1 min-w-[50px]">
+                    <span class="time-display text-xs md:text-sm text-gray-500 font-mono tabular-nums" data-duration="0:00">0:00</span>
+                    <div class="md:hidden w-16 h-1 bg-gray-200 rounded-full overflow-hidden">
+                        <div class="progress-fill h-full bg-pink-500" style="width: 0%"></div>
+                     </div>
                 </div>
                 
                 <audio class="audio-element hidden" preload="metadata" src="/music/beat_4.mp3"></audio>
