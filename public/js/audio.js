@@ -1,7 +1,8 @@
 document.addEventListener('DOMContentLoaded', () => {
     const players = [];
 
-    document.querySelectorAll('.audio-player').forEach((playerElement, index) => {
+    document.querySelectorAll('.audio-player').forEach((playerElement) => {
+        // 1. Préparation de la source
         let audioSrc = playerElement.dataset.src;
         if (audioSrc && audioSrc.startsWith('public/')) {
             audioSrc = audioSrc.replace('public/', '/');
@@ -9,57 +10,55 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const isMissing = playerElement.dataset.missing === 'true';
         const playBtn = playerElement.querySelector('.play-pause-btn');
-        // On cible les icônes
         const playIcon = playerElement.querySelector('.play-icon');
         const pauseIcon = playerElement.querySelector('.pause-icon');
         const progressFill = playerElement.querySelector('.progress-fill');
         const timeDisplay = playerElement.querySelector('.time-display');
         
+        // Création de l'instance Audio unique pour ce lecteur
         const audio = new Audio(audioSrc);
 
-        // --- Mise à jour précise des icônes ---
-        const showPlayIcon = () => {
-            if (playIcon) playIcon.classList.remove('hidden');
-            if (pauseIcon) pauseIcon.classList.add('hidden');
-            
-            // État visuel du conteneur
-            playerElement.classList.remove('is-playing', 'ring-2', 'ring-mint-green');
-            playBtn.classList.remove('bg-opacity-80', 'scale-95');
+        // --- GESTION DES ICÔNES ET DU STYLE ---
+        const updateUI = () => {
+            if (audio.paused) {
+                // Mode STOPPED / START (Icône Play visible)
+                if (playIcon) playIcon.classList.remove('hidden');
+                if (pauseIcon) pauseIcon.classList.add('hidden');
+                playerElement.classList.remove('is-playing', 'ring-2', 'ring-mint-green');
+                playBtn.classList.remove('scale-90', 'bg-opacity-70');
+            } else {
+                // Mode PLAYING / STOP (Icône Pause visible)
+                if (playIcon) playIcon.classList.add('hidden');
+                if (pauseIcon) pauseIcon.classList.remove('hidden');
+                playerElement.classList.add('is-playing', 'ring-2', 'ring-mint-green');
+                playBtn.classList.add('scale-90', 'bg-opacity-70');
+            }
         };
 
-        const showPauseIcon = () => {
-            if (playIcon) playIcon.classList.add('hidden');
-            if (pauseIcon) pauseIcon.classList.remove('hidden');
-            
-            // État visuel actif (Dynamisme)
-            playerElement.classList.add('is-playing', 'ring-2', 'ring-mint-green');
-            playBtn.classList.add('bg-opacity-80', 'scale-95');
-        };
-
+        // --- ÉVÉNEMENT DE CLIC UNIQUE (Solution au bug) ---
         if (playBtn) {
+            // On s'assure qu'aucun autre événement (pointerdown/up) ne vient polluer
             playBtn.addEventListener('click', (e) => {
                 e.preventDefault();
                 if (isMissing) return;
 
                 if (audio.paused) {
-                    // Arrêter tous les autres sons proprement
+                    // Arrêter les autres sons avant de jouer
                     players.forEach(p => {
                         if (p.audio !== audio) {
                             p.audio.pause();
-                            p.showPlayIcon();
+                            p.updateUI();
                         }
                     });
-
-                    audio.play().catch(err => console.error("Erreur:", err));
-                    showPauseIcon();
+                    audio.play().catch(err => console.error("Erreur de lecture:", err));
                 } else {
                     audio.pause();
-                    showPlayIcon();
                 }
+                updateUI();
             });
         }
 
-        // Progression et temps
+        // Mise à jour barre de progression
         audio.addEventListener('timeupdate', () => {
             if (audio.duration) {
                 const percent = (audio.currentTime / audio.duration) * 100;
@@ -71,13 +70,13 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
 
-        // Reset auto à la fin
+        // Reset quand la musique finit
         audio.addEventListener('ended', () => {
-            showPlayIcon();
+            updateUI();
             if (progressFill) progressFill.style.width = '0%';
         });
 
-        // Stockage pour la gestion globale
-        players.push({ audio, showPlayIcon });
+        // Ajouter à la liste globale
+        players.push({ audio, updateUI });
     });
 });
